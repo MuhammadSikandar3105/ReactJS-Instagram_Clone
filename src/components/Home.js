@@ -2,8 +2,7 @@ import React from 'react'
 import Story from './Story'
 import Suggested from './Suggested'
 import Posts from './Posts'
-import Foryou from './Foryou'
-
+import Foryou from './Foryou';
 const Home = () => {
   return (
     <>
@@ -14,9 +13,9 @@ const Home = () => {
               < Story />
               <Suggested />
               <Posts />
-              <Foryou />
             </div>
           </div>
+          <Foryou/>
         </section>
       </div>
 

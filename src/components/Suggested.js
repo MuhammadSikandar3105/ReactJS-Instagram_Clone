@@ -8,15 +8,15 @@ import { selectIcons } from '../state/store/iconSlice';
 import { setActiveSection, selectActiveSection } from '../state/store/navbarSlice';
 
 const Suggested = () => {
-   // svgs
-   const { logo, Home, HomeActive, reels, notification, reelsActive, notificationActive, messageActive2,  messages, search, searchActive, Explor, exploreactive,  More, threads, create, cross, pro } = useSelector(selectIcons);
-   // active section
-   const dispatch = useDispatch();
-   const activeSection = useSelector(selectActiveSection);
- 
-   const handleSectionChange = (section) => {
-     dispatch(setActiveSection(section));
-   };
+  // svgs
+  const { logo, Home, HomeActive, reels, notification, reelsActive, notificationActive, messageActive2, messages, search, searchActive, Explor, exploreactive, More, threads, create, cross, pro } = useSelector(selectIcons);
+  // active section
+  const dispatch = useDispatch();
+  const activeSection = useSelector(selectActiveSection);
+
+  const handleSectionChange = (section) => {
+    dispatch(setActiveSection(section));
+  };
   return (
     <>
       <div className="container suggested-sec d-flex">
@@ -34,35 +34,136 @@ const Suggested = () => {
               <div className="scroll-images">
                 <div className="child">
                   <div className="child-image card-suggestion">
-                    <img className="cross-ic" src="assets/svg/cross.svg" alt="img" />
-                    <div className="item d-flex flex-column justify-content-center">
-                      <div><img className="profile-su-img" src="assets/images/IMG-20240418-WA0007 (2).jpg" alt="" />
+                    <img className="cross-ic" src={cross} alt="img"/>
+                      <div className="item d-flex flex-column justify-content-center align-center">
+                        <div><img className="profile-su-img" src={pro} alt=""/>
+                        </div>
+                        <span className=".name-su-ca">abdullah</span>
+                        <p><span className="para-1">Followed by</span><span className="para-2">mohsinkahn1345
+                          and...</span>
+                        </p>
+                        <span className="followed-imgs">
+                          <img className="followed-img-1" src={pro} alt="img"/>
+                            <img className="followed-img-2" src={pro} alt=""/>
+                            </span>
+                          </div>
+                          <div className="item-2">
+                            <a className="follow-end" href="">Follow</a>
+                          </div>
                       </div>
-                      <h6 className="name">abdullah</h6>
-                      <p><span className="para-1">Followed by</span><span className="para-2">mohsinkahn1345
-                        and...</span>
-                      </p>
-                      <span className="followed-imgs">
-                        <img className="followed-img-1" src="assets/images/IMG_4326.jpg" alt="img" />
-                        <img className="followed-img-2" src="assets/images/IMG_4310.jpg" alt="" />
-                      </span>
+                  </div>
+                  <div className="child">
+                    <div className="child-image card-suggestion">
+                      <img className="cross-ic" src={cross} alt="img"/>
+                        <div className="item d-flex flex-column justify-content-center">
+                          <div><img className="profile-su-img" src={pro} alt=""/>
+                          </div>
+                          <h6 className="name">abdullah</h6>
+                          <p><span className="para-1">Followed by</span><span className="para-2">mohsinkahn1345
+                            and...</span>
+                          </p>
+                          <span className="followed-imgs">
+                            <img className="followed-img-1" src={pro} alt="img"/>
+                              <img className="followed-img-2" src={pro} alt=""/>
+                              </span>
+                            </div>
+                            <div className="item-2">
+                              <a className="follow-end" href="">Follow</a>
+                            </div>
+                        </div>
                     </div>
-                    <div className="item-2">
-                      <a className="follow-end" href="">Follow</a>
+                    <div className="child">
+                      <div className="child-image card-suggestion">
+                        <img className="cross-ic" src={cross} alt="img"/>
+                          <div className="item d-flex flex-column justify-content-center">
+                            <div><img className="profile-su-img" src={pro} alt=""/>
+                            </div>
+                            <h6 className="name">abdullah</h6>
+                            <p><span className="para-1">Followed by</span><span className="para-2">mohsinkahn1345
+                              and...</span>
+                            </p>
+                            <span className="followed-imgs">
+                              <img className="followed-img-1" src={pro} alt="img"/>
+                                <img className="followed-img-2" src={pro} alt=""/>
+                                </span>
+                              </div>
+                              <div className="item-2">
+                                <a className="follow-end" href="">Follow</a>
+                              </div>
+                          </div>
+                      </div>
+                      <div className="child">
+                        <div className="child-image card-suggestion">
+                          <img className="cross-ic" src={cross} alt="img"/>
+                            <div className="item d-flex flex-column justify-content-center">
+                              <div><img className="profile-su-img" src={pro} alt=""/>
+                              </div>
+                              <h6 className="name">abdullah</h6>
+                              <p><span className="para-1">Followed by</span><span className="para-2">mohsinkahn1345
+                                and...</span>
+                              </p>
+                              <span className="followed-imgs">
+                                <img className="followed-img-1" src={pro} alt="img"/>
+                                  <img className="followed-img-2" src={pro} alt=""/>
+                                  </span>
+                                </div>
+                                <div className="item-2">
+                                  <a className="follow-end" href="">Follow</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="child">
+                          <div className="child-image card-suggestion">
+                            <img className="cross-ic" src={cross} alt="img"/>
+                              <div className="item d-flex flex-column justify-content-center">
+                                <div><img className="profile-su-img" src={pro} alt=""/>
+                                </div>
+                                <h6 className="name">abdullah</h6>
+                                <p><span className="para-1">Followed by</span><span className="para-2">mohsinkahn1345
+                                  and...</span>
+                                </p>
+                                <span className="followed-imgs">
+                                  <img className="followed-img-1" src={pro} alt="img"/>
+                                    <img className="followed-img-2" src={pro} alt=""/>
+                                    </span>
+                                  </div>
+                                  <div className="item-2">
+                                    <a className="follow-end" href="">Follow</a>
+                                  </div>
+                              </div>
+                          </div>
+                          <div className="child">
+                            <div className="child-image card-suggestion">
+                              <img className="cross-ic" src={cross} alt="img"/>
+                                <div className="item d-flex flex-column justify-content-center">
+                                  <div><img className="profile-su-img" src={pro} alt=""/>
+                                  </div>
+                                  <h6 className="name">abdullah</h6>
+                                  <p><span className="para-1">Followed by</span><span className="para-2">mohsinkahn1345
+                                    and...</span>
+                                  </p>
+                                  <span className="followed-imgs">
+                                    <img className="followed-img-1" src={pro} alt="img"/>
+                                      <img className="followed-img-2" src={pro} alt=""/>
+                                      </span>
+                                    </div>
+                                    <div className="item-2">
+                                      <a className="follow-end" href="">Follow</a>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                          <div>
+                            <button onclick="scrolll()" className="icon-caro icon-r"><i
+                              className="fas fa-angle-right angle-ic"></i></button>
+                          </div>
+                        </div>
+                      </div>
+
                     </div>
                   </div>
-                </div>
-              </div>
-              <div>
-                <button onclick="scrolll()" className="icon-caro icon-r"><i
-                  className="fas fa-angle-right angle-ic"></i></button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  )
+                </>
+                )
 }
 
-export default Suggested
+                export default Suggested
