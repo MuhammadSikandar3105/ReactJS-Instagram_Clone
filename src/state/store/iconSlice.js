@@ -22,7 +22,7 @@ import dragphotos from '../assets/svg/dragphotos.svg';
 import dropdown from '../assets/svg/dropdown.svg';
 import emoji from '../assets/svg/emoji.svg';
 import exploreactive from '../assets/svg/exploreactive.svg';
-import favourit from '../assets/svg/favourit.svg';
+import favourite from '../assets/svg/favourit.svg';
 import favouritPost from '../assets/svg/favouritPost.svg';
 import favouritpostwhite from '../assets/svg/favouritpostwhite.svg';
 import following from '../assets/svg/following .svg';
@@ -114,7 +114,7 @@ const iconsSlice = createSlice({
     Explor,
     exploreactive,
     dropdown,
-    favourit,
+    favourite,
     emoji,
     More,
     threads,

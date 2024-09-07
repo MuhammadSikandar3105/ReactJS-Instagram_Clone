@@ -6,7 +6,7 @@ import '../styles/explore.css';
 const Explore = () => {
   return (
     <>
-      <div className="container content-main-2 my-5">
+      <div className="container content-main-2">
                 <div className="main-sec-2">
                         <div className="row insta-grid">
                                 <div className="item-1 grid-item"><img

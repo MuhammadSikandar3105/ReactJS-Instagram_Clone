@@ -26,12 +26,12 @@ const Navbar = () => {
             <li className="nav-item" id="nav-item">
               <Link className="nav-link navbar-item active" id="home" aria-current="page"
                 to="/" onClick={() => handleSectionChange('home')}><img className="homeActive" src={activeSection === 'home' ? HomeActive : Home} alt="" srcset="" /><span
-                  className="i-d" >Home</span></Link>
+                  className="i-d" >{activeSection === 'home' ? <strong>Home</strong> : 'Home'}</span></Link>
             </li>
             {/* offcanvas search */}
             <li className="nav-item" id="nav-item">
               <Link className="nav-link navbar-item active" id="home" aria-current="page" onClick={() => handleSectionChange('search')}><img className="searchActive" src={activeSection === 'search' ? searchActive : search}
-                alt="" srcset="" /><span className="i-d">Search</span></Link>
+                alt="" srcset="" /><span className="i-d">{activeSection === 'search' ? <strong>Search</strong> : 'Search'}</span></Link>
             </li>
             <div className="offcanva" id="offcanva">
               <div className="content">
@@ -51,20 +51,20 @@ const Navbar = () => {
             <li className="nav-item" id="nav-item">
               <Link className="nav-link navbar-item" onClick={() => handleSectionChange('Explore')} to="/Explore"><img
                 className="exploreActive" src={activeSection === 'Explore' ? exploreactive : Explor} alt="" srcset="" /><span
-                  className="i-d" id="i-d">Explore</span></Link>
+                  className="i-d" id="i-d">{activeSection === 'Explore' ? <strong>Explore</strong> : 'Explore'}</span></Link>
             </li>
             <li className="nav-item" id="nav-item">
               <Link className="nav-link navbar-item" onClick={() => handleSectionChange('Reels')} id="loadReels" aria-disabled="true"><img className="reelsActive reelBtn" src={activeSection === 'Reels' ? reelsActive : reels} alt="" srcset="" /><span
-                className="i-d" id="i-d">Reels</span></Link>
+                className="i-d" id="i-d">{activeSection === 'Reels' ? <strong>Reels</strong> : 'Reels'}</span></Link>
             </li>
             <li className="nav-item" id="nav-item">
               <Link className="nav-link navbar-item" onClick={() => handleSectionChange('messages')} aria-disabled="true"><img className="messageActive"
                 src={activeSection === 'messages' ? messageActive2 : messages} alt="" srcset="" /><span
-                  className="i-d" id="i-d">Messages</span></Link>
+                  className="i-d" id="i-d">{activeSection === 'messages' ? <strong>Messages</strong> : 'Messages'}</span></Link>
             </li>
             <li className="nav-item" id="nav-item">
               <Link className="nav-link navbar-item" onClick={() => handleSectionChange('Notifications')} id="notification" aria-disabled="true"><img className="notificationActive" src={activeSection === 'Notifications' ? notificationActive : notification} alt=""
-                srcset="" /><span className="i-d" id="i-d">Notifications</span></Link>
+                srcset="" /><span className="i-d" id="i-d">{activeSection === 'Notifications' ? <strong>Notifications</strong> : 'Notifications'}</span></Link>
             </li>
             {/* <!-- offcanvas notification --> */}
             <div className="offcanva" id="offcanva">
@@ -82,12 +82,12 @@ const Navbar = () => {
             <li className="nav-item" id="nav-item">
               <Link className="nav-link navbar-item" onClick={() => handleSectionChange('Create')} aria-disabled="true"><img className="createActive"
                 src={activeSection === 'Create' ? create : create} alt="" srcset="" /><span
-                  className="i-d" id="i-d">Create</span></Link>
+                  className="i-d" id="i-d">{activeSection === 'Create' ? <strong>Create</strong> : 'Create'}</span></Link>
             </li>
             <li className="nav-item" id="nav-item">
               <Link className="nav-link  d-flex align-center" onClick={() => handleSectionChange('Profile')} aria-disabled="true"><img
                 className="pro-img" src={pro}
-                alt="" srcset="" /><span className="i-d mt-1 ms-1" id="i-d">Profile</span></Link>
+                alt="" srcset="" /><span className="i-d mt-1 ms-1" id="i-d">{activeSection === 'Profile' ? <strong>Profile</strong> : 'Profile'}</span></Link>
             </li>
           </ul>
           <ul className="navbar-nav d-flex flex-column nav-main justify-content-start">
@@ -98,7 +98,7 @@ const Navbar = () => {
             </li>
             <li className="nav-item" id="nav-item">
               <Link className="nav-link navbar-item" onClick={() => handleSectionChange('More')} aria-disabled="true"><img src={More} srcset="" /><span
-                className="i-d ms-0 ps-0" id="i-d">More</span></Link>
+                className="i-d ms-0 ps-0" id="i-d">{activeSection === 'More' ? <strong>More</strong> : 'More'}</span></Link>
             </li>
           </ul>
         </nav>
