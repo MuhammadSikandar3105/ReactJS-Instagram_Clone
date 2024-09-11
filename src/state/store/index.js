@@ -3,6 +3,8 @@ import iconsReducer from '../store/iconSlice';
 import navbarReducer from '../store/navbarSlice';
 import likeReducer from './likeSlice';
 import favouriteReducer from './favouriteSlice';
+import modalReducer from './modalSlice';
+import postReducer from './postSlice'
 
 const store = configureStore({
   reducer: {
@@ -10,6 +12,8 @@ const store = configureStore({
     navbar: navbarReducer,
     like: likeReducer,
     fav: favouriteReducer,
+    modal: modalReducer,
+    posts: postReducer,
   },
 });
 

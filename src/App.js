@@ -10,6 +10,7 @@ import Notification from './components/Notification';
 import Profile from './components/Profile';
 import Create from './components/Create';
 import More from './components/More';
+import PostModal from './components/PostModal';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
             <Route path="/create" element={<Create />} />
             <Route path="/more" element={<More />} />
           </Routes>
+          <PostModal/>
         </div>
       </Router>
     </>

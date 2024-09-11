@@ -3,20 +3,15 @@ import '../styles/stylesheet.css';
 import '../styles/responsive.css';
 import '../styles/sugestion.css';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { selectIcons } from '../state/store/iconSlice';
-import { setActiveSection, selectActiveSection } from '../state/store/navbarSlice';
+import { Link } from 'react-router-dom';
 
 const Suggested = () => {
   // svgs
-  const { logo, Home, HomeActive, reels, notification, reelsActive, notificationActive, messageActive2, messages, search, searchActive, Explor, exploreactive, More, threads, create, cross, pro } = useSelector(selectIcons);
+  const { cross, pro } = useSelector(selectIcons);
   // active section
-  const dispatch = useDispatch();
-  const activeSection = useSelector(selectActiveSection);
 
-  const handleSectionChange = (section) => {
-    dispatch(setActiveSection(section));
-  };
   return (
     <>
       <div className="container suggested-sec d-flex">
@@ -48,7 +43,7 @@ const Suggested = () => {
                             </span>
                           </div>
                           <div className="item-2">
-                            <a className="follow-end" href="">Follow</a>
+                            <Link className="follow-end" to="">Follow</Link>
                           </div>
                       </div>
                   </div>
@@ -68,7 +63,7 @@ const Suggested = () => {
                               </span>
                             </div>
                             <div className="item-2">
-                              <a className="follow-end" href="">Follow</a>
+                              <Link className="follow-end" to="">Follow</Link>
                             </div>
                         </div>
                     </div>
@@ -88,7 +83,7 @@ const Suggested = () => {
                                 </span>
                               </div>
                               <div className="item-2">
-                                <a className="follow-end" href="">Follow</a>
+                                <Link className="follow-end" to="">Follow</Link>
                               </div>
                           </div>
                       </div>
@@ -108,7 +103,7 @@ const Suggested = () => {
                                   </span>
                                 </div>
                                 <div className="item-2">
-                                  <a className="follow-end" href="">Follow</a>
+                                  <Link className="follow-end" to="">Follow</Link>
                                 </div>
                             </div>
                         </div>
@@ -128,7 +123,7 @@ const Suggested = () => {
                                     </span>
                                   </div>
                                   <div className="item-2">
-                                    <a className="follow-end" href="">Follow</a>
+                                    <Link className="follow-end" to="">Follow</Link>
                                   </div>
                               </div>
                           </div>
@@ -148,7 +143,7 @@ const Suggested = () => {
                                       </span>
                                     </div>
                                     <div className="item-2">
-                                      <a className="follow-end" href="">Follow</a>
+                                      <Link className="follow-end" to="">Follow</Link>
                                     </div>
                                 </div>
                             </div>

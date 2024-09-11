@@ -2,20 +2,13 @@ import React from 'react'
 import '../styles/stylesheet.css';
 import '../styles/responsive.css';
 import '../styles/story-sec.css';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { selectIcons } from '../state/store/iconSlice';
-import { setActiveSection, selectActiveSection } from '../state/store/navbarSlice';
 
 const Story = () => {
   // svgs
   const { pluspost, pro } = useSelector(selectIcons);
-  // active section
-  const dispatch = useDispatch();
-  const activeSection = useSelector(selectActiveSection);
 
-  const handleSectionChange = (section) => {
-    dispatch(setActiveSection(section));
-  };
   return (
     <>
       <div className=" stories d-flex">

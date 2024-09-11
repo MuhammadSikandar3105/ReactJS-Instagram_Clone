@@ -42,7 +42,7 @@ const Posts = () => {
           </div>
           <div className="actionsBtns">
             <div className="left">
-              <img className="like-button mx-2" onClick={handleLike} src={liked ? heart_red : heart} />
+              <img className="like-button mx-2" alt='' onClick={handleLike} src={liked ? heart_red : heart} />
               <img className='mx-2' src={comment} alt="" />
               <img className='mx-2' src={share} alt="" />
             </div>
