@@ -23,6 +23,7 @@ import dropdown from '../assets/svg/dropdown.svg';
 import emoji from '../assets/svg/emoji.svg';
 import exploreactive from '../assets/svg/exploreactive.svg';
 import favourite from '../assets/svg/favourit.svg';
+import instalogin from '../assets/svg/instalogin.svg';
 import favouritPost from '../assets/svg/favouritPost.svg';
 import favouritpostwhite from '../assets/svg/favouritpostwhite.svg';
 import following from '../assets/svg/following .svg';
@@ -77,6 +78,7 @@ const iconsSlice = createSlice({
     threradrepost,
     videocall,
     useracount,
+    instalogin,
     threadmobnotification,
     notification,
     pro,

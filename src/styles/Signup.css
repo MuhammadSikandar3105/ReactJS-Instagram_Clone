@@ -1,126 +1,100 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* Basic styling for Instagram-like signup */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #fafafa;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-.container {
-    width: 100%;
-    max-width: 350px;
-    text-align: center;
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-.signup-form {
-    background-color: #fff;
-    padding: 20px;
-    border: 1px solid #dbdbdb;
-    border-radius: 4px;
+.signup-box {
+  /* background-color: #fff; */
+  border: 1px solid #dbdbdb;
+  border-radius: 5px;
+  padding: 20px;
+  width: 350px;
+  max-width: 100%;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-h1 {
-    font-family: 'Billabong', sans-serif;
-    font-size: 3rem;
-    margin-bottom: 10px;
+.signup-title {
+  font-family: 'Billabong', cursive;
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #262626;
 }
 
-p {
-    color: #8e8e8e;
-    font-size: 0.9rem;
-    margin: 10px 0;
+.input-box {
+  margin-bottom: 15px;
 }
 
-.fb-login {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    background-color: #4267b2;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
+.input-box input {
+  width: 100%;
+  padding: 10px;
+  background: #1b1b1b;
+  border: 1px solid #6d6c6c;
+  border-radius: 5px;
+  font-size: 14px;
+  box-sizing: border-box;
 }
 
-.or {
-    display: flex;
-    align-items: center;
-    color: #8e8e8e;
-    margin: 10px 0;
+.signup-btn {
+  width: 100%;
+  background-color: #3897f0;
+  border: none;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+  box-sizing: border-box;
 }
 
-.or::before, .or::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: #dbdbdb;
+.signup-btn:disabled {
+  background-color: #b2dffc;
+  cursor: not-allowed;
 }
 
-.or::before {
-    margin-right: 10px;
+.signup-btn:hover {
+  background-color: #2a75d6;
 }
 
-.or::after {
-    margin-left: 10px;
+.error-message {
+  color: #e94f4f;
+  margin-top: 10px;
+  font-size: 14px;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
+.login-box {
+  margin-top: 15px;
 }
 
-input {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #dbdbdb;
-    border-radius: 4px;
-    background-color: #fafafa;
+.login-box p {
+  margin: 0;
+  font-size: 14px;
 }
 
-button[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    background-color: #3897f0;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
+.login-btn {
+  background: none;
+  border: none;
+  color: #3897f0;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+  text-decoration: underline;
+  transition: color 0.3s ease;
 }
 
-.terms {
-    font-size: 0.8rem;
-    color: #8e8e8e;
-    margin: 5px 0;
-}
-
-.terms a {
-    color: #00376b;
-}
-
-.app-download {
-    margin: 20px 0;
-}
-
-.app-download img {
-    width: 45%;
-    margin: 5px;
-}
-
-footer {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 0.8rem;
-    color: #8e8e8e;
+.login-btn:hover {
+  color: #2a75d6;
 }

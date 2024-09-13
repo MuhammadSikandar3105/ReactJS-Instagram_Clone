@@ -1,124 +1,85 @@
-* {
+/* Basic styling for Instagram-like login */
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #fafafa;
+  }
+  
+  .login-container2 {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     height: 100vh;
-    margin: 0;
-}
-
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 935px;
-    width: 100%;
-}
-
-.phone img {
-    width: 96%;
-    height: 100%;
-    
-}
-
-.login-form {
+  }
+  
+  .login-box2 {
+    background-color: #000000;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
+    padding: 20px;
     width: 350px;
-    padding: 10px;
-    background-color: #fff;
-    margin-left: 32px;
     text-align: center;
-}
-
-h1 {
-    font-family: 'Billabong', sans-serif;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  .login-title2 {
+    font-family: 'Billabong', cursive;
     font-size: 3rem;
     margin-bottom: 20px;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-input {
+    color: #262626;
+  }
+  
+  .input-box2 {
+    margin-bottom: 15px;
+  }
+  
+  .input-box2 input {
     width: 100%;
     padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #dbdbdb;
-    border-radius: 3px;
-    background-color: #fafafa;
-}
-
-button {
+    background: #1b1b1b;
+    border: 1px solid #6d6c6c;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+  
+  .login-btn2 {
     width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    border: none;
-    
     background-color: #3897f0;
-    color: white;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
     font-weight: bold;
     cursor: pointer;
-}
-
-.or {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: #8e8e8e;
-    margin: 10px 0;
-}
-
-.or::before, .or::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: #dbdbdb;
-}
-
-.or::before {
-    margin-right: 10px;
-}
-
-.or::after {
-    margin-left: 10px;
-}
-
-.fb-login {
-    background-color: #4267b2;
-}
-
-a {
-    color: #00376b;
-    font-size: 0.9rem;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .login-btn2:disabled {
+    background-color: #b2dffc;
+    cursor: not-allowed;
+  }
+  
+  .error-message {
+    color: #e94f4f;
     margin-top: 10px;
-    text-decoration: none;
-}
-
-.signup {
-    margin: 13px 0;
-    padding: 10px 0;
-    border-bottom:0px solid #dbdbdb;
-}
-
-.app-download {
-    margin-top: 20px;
-}
-
-.app-download img {
-    width: 40%;
-    margin: 5px;
-}
-
-footer {
-    text-align: center;
-    margin-top: 20px;
-}
+    font-size: 14px;
+  }
+  
+  .signup-box2 {
+    margin-top: 15px;
+  }
+  
+  .signup-btn2 {
+    background: none;
+    border: none;
+    color: #3897f0;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .signup-btn2:hover {
+    text-decoration: underline;
+  }
+  

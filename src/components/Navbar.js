@@ -4,7 +4,7 @@ import '../styles/responsive.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectIcons } from '../state/store/iconSlice';
 import { setActiveSection, selectActiveSection } from '../state/store/navbarSlice';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { openModal } from '../state/store/modalSlice';
 
 const Navbar = () => {
@@ -16,23 +16,31 @@ const Navbar = () => {
 
   const handleSectionChange2 = (section) => {
     if (section === 'Create') {
-      dispatch(openModal()); 
-      dispatch(setActiveSection(section)); 
+      dispatch(openModal());
+      dispatch(setActiveSection(section));
     }
   };
   const handleSectionChange = (section) => {
-      dispatch(setActiveSection(section)); 
-    }
+    dispatch(setActiveSection(section));
+  }
 
   const modalState = useSelector((state) => state.modal.isOpen);
   console.log(modalState);
+
+let navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/signup')
+  }
+
   return (
     <>
       <section>
         <nav id="navbar-sec" className=" navbar-sec navbar-expand bg-body-dark " data-bs-theme="dark">
           <ul className="navbar-nav d-flex flex-column nav-main justify-content-start">
             <Link className="navbar-brand my-4 ms-0 px-3" to="/" ><span id="insta-logo" className="insta-logo ms-3"></span><img id="insta-name" className="insta-name"
-              src={logo} alt="" srcset="" /></Link>
+              src={logo} alt="" /></Link>
             <li className="nav-item" id="nav-item">
               <Link className="nav-link navbar-item active" id="home" aria-current="page"
                 to="/" onClick={() => handleSectionChange('home')}><img className="homeActive" src={activeSection === 'home' ? HomeActive : Home} alt="" srcset="" /><span
@@ -90,7 +98,7 @@ const Navbar = () => {
             <div className="overlay" id="overlay"></div>
             {/* <!-- offcanva end --> */}
             <li className="nav-item" id="nav-item">
-              <Link className="nav-link navbar-item" onClick={ () => {handleSectionChange2('Create')}} aria-disabled="true" ><img className="createActive"
+              <Link className="nav-link navbar-item" onClick={() => { handleSectionChange2('Create') }} aria-disabled="true" ><img className="createActive"
                 src={activeSection === 'Create' ? create : create} alt="" srcset="" /><span
                   className="i-d" id="i-d">{activeSection === 'Create' ? <strong>Create</strong> : 'Create'}</span></Link>
             </li>
@@ -107,7 +115,7 @@ const Navbar = () => {
                 src={threads} alt="" srcset="" /><span className="i-d" id="i-d">Threads</span></Link>
             </li>
             <li className="nav-item" id="nav-item">
-              <Link className="nav-link navbar-item" onClick={() => handleSectionChange('More')} aria-disabled="true"><img src={More} alt='img' /><span
+              <Link className="nav-link navbar-item" onClick={handleLogout} aria-disabled="true"><img src={More} alt='img' /><span
                 className="i-d ms-0 ps-0" id="i-d">{activeSection === 'More' ? <strong>More</strong> : 'More'}</span></Link>
             </li>
           </ul>
