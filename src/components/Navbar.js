@@ -31,7 +31,7 @@ let navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    navigate('/signup')
+    navigate('/login')
   }
 
   return (
