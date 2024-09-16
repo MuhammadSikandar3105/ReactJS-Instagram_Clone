@@ -3,16 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import Spinner from './Spinner';
 import { useSelector } from 'react-redux';
 import { selectIcons } from '../state/store/iconSlice';
-import '../styles/loginpage.css';
+import '../styles/Loginpage.css';
 
-const Login = () => {
+const Login = ({ setIsAuthenticated }) => {  // Ensure this prop is passed if needed
     // svgs
     const { instalogin, logo } = useSelector(selectIcons);
     const [credentials, setCredentials] = useState({ email: '', password: '' });
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
     let navigate = useNavigate();
-
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -27,7 +26,7 @@ const Login = () => {
         setErrorMessage(null);
 
         try {
-            const response = await fetch(`http://localhost:5000/api/auth/login`, {
+            const response = await fetch('http://localhost:5000/api/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -40,6 +39,7 @@ const Login = () => {
 
             if (json.success) {
                 localStorage.setItem('token', json.authtoken);
+                setIsAuthenticated(true);  // Update the global authentication state
                 navigate("/");  // Redirect to home after successful login
             } else {
                 setErrorMessage('Invalid Credentials');
@@ -61,7 +61,7 @@ const Login = () => {
             {loading && <Spinner />} {/* Show spinner when loading */}
 
             <div className="login-box2">
-                <h1 className="login-title2"><img src={logo} alt="" /></h1>
+                <h1 className="login-title2"><img src={logo} alt="Logo" /></h1>
                 <form onSubmit={handleSubmit}>
                     <div className="input-box2">
                         <input

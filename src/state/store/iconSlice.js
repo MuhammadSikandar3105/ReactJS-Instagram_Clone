@@ -64,12 +64,18 @@ import useracount from '../assets/svg/useracount.svg';
 import videocall from '../assets/svg/videocall.svg';
 import More from '../assets/svg/More.svg';
 import pro from '../assets/images/pro.JPG';
+import playstore from '../assets/images/playstore.png';
+import mobileimage from '../assets/images/mobileimg.png';
+import microsoft from '../assets/images/Microsoft image.PNG';
 
 const iconsSlice = createSlice({
   name: 'icons',
   initialState: {
     logo,
     Home,
+    playstore,
+    mobileimage,
+    microsoft,
     newmessage,
     HomeActive,
     playbtn,

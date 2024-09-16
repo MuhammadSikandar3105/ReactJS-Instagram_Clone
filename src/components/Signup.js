@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/signup.css';
+import '../styles/Signup.css';
 import { useSelector } from 'react-redux';
 import { selectIcons } from '../state/store/iconSlice';
 import Spinner from './Spinner';

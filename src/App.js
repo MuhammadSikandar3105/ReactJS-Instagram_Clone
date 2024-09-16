@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import { useState, useEffect } from 'react';
-import Navbar from './components/Navbar';
+import NavbarWrapper from './components/Navbar-wrapper';
 import Home from './components/Home';
 import Explore from './components/Explore';
 import Search from './components/Search';
@@ -45,7 +45,7 @@ function App() {
       <Router>
         <div>
           {/* Show Navbar only if authenticated */}
-          <IsAuthenticated element={Navbar} isAuthenticated={isAuthenticated} />
+          <NavbarWrapper isAuthenticated={isAuthenticated} />
           <Routes>
             {/* Public routes */}
             <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
