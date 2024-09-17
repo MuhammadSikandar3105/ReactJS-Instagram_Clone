@@ -483,3 +483,72 @@ iframe {
     /* Adjust based on navbar height */
     border: none;
 }
+
+
+/* search offcanvas */
+
+.instaSearchActive{
+    outline: 1px solid white;
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: -10px;
+}
+
+/* notification offcanvas */
+.instaNotificationActive{
+    outline: 1px solid white;
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: -10px;
+}
+
+.first-user {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.first-user .first-user-image {
+    display: flex;
+    flex-direction: column;
+    padding-left: 24px;
+}
+
+.first-user .first-user-image img {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    padding: 6px;
+}
+
+.first-user .first-user-name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6px;
+}
+
+.first-user .first-user-name .first-user-name-name {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* badge for notification */
+
+.badge-notification {
+    position: relative;
+  }
+  
+  .badge-notification::after {
+    content: 'gf';
+    position: relative;
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    border: 2px solid white; /* Optional: adds a white border around the badge */
+  }
+  

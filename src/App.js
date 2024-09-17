@@ -4,10 +4,8 @@ import { useState, useEffect } from 'react';
 import NavbarWrapper from './components/Navbar-wrapper';
 import Home from './components/Home';
 import Explore from './components/Explore';
-import Search from './components/Search';
 import Reels from './components/Reels';
 import Messages from './components/Messages';
-import Notification from './components/Notification';
 import Profile from './components/Profile';
 import Create from './components/Create';
 import More from './components/More';
@@ -53,11 +51,9 @@ function App() {
 
             {/* Private routes */}
             <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
-            <Route path="/search" element={<PrivateRoute><Search /></PrivateRoute>} />
             <Route path="/explore" element={<PrivateRoute><Explore /></PrivateRoute>} />
             <Route path="/reels" element={<PrivateRoute><Reels /></PrivateRoute>} />
             <Route path="/messages" element={<PrivateRoute><Messages /></PrivateRoute>} />
-            <Route path="/notifications" element={<PrivateRoute><Notification /></PrivateRoute>} />
             <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
             <Route path="/create" element={<PrivateRoute><Create /></PrivateRoute>} />
             <Route path="/more" element={<PrivateRoute><More /></PrivateRoute>} />
