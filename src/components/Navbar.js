@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/stylesheet.css';
 import '../styles/responsive.css';
 import { useSelector, useDispatch } from 'react-redux';
@@ -6,6 +6,7 @@ import { selectIcons } from '../state/store/iconSlice';
 import { setActiveSection, selectActiveSection } from '../state/store/navbarSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import { openModal } from '../state/store/modalSlice';
+import OffcanvasSearch from './OffcanvasSearch';
 
 const Navbar = ({ onLogout }) => {
   // SVGs
@@ -14,16 +15,27 @@ const Navbar = ({ onLogout }) => {
   const dispatch = useDispatch();
   const activeSection = useSelector(selectActiveSection);
   const navigate = useNavigate();
+  const [isOffcanvasOpen, setIsOffcanvasOpen] = useState(false);
 
   const handleSectionChange2 = (section) => {
     if (section === 'Create') {
       dispatch(openModal());
       dispatch(setActiveSection(section));
     }
+
   };
 
   const handleSectionChange = (section) => {
     dispatch(setActiveSection(section));
+
+    if (section === 'search') {
+      toggleOffcanvas();
+    }
+  };
+
+  // Toggle offcanvas function
+  const toggleOffcanvas = () => {
+    setIsOffcanvasOpen(!isOffcanvasOpen);
   };
 
   const handleLogout = () => {
@@ -47,8 +59,6 @@ const Navbar = ({ onLogout }) => {
               <span className="i-d">{activeSection === 'home' ? <strong>Home</strong> : 'Home'}</span>
             </Link>
           </li>
-          {/* Offcanvas search */}
-          {/* Your offcanvas search code here */}
           <li className="nav-item" id="nav-item">
             <Link className="nav-link navbar-item active" id="home" aria-current="page"
               onClick={() => handleSectionChange('search')}>
@@ -111,6 +121,8 @@ const Navbar = ({ onLogout }) => {
           </li>
         </ul>
       </nav>
+      {/* Offcanvas Component */}
+      <OffcanvasSearch isOpen={isOffcanvasOpen} toggleOffcanvas={toggleOffcanvas} />
     </section>
   );
 };
