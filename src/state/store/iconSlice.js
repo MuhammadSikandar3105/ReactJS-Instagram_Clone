@@ -67,6 +67,7 @@ import pro from '../assets/images/pro.JPG';
 import playstore from '../assets/images/playstore.png';
 import mobileimage from '../assets/images/mobileimg.png';
 import microsoft from '../assets/images/Microsoft image.PNG';
+import settings from '../assets/svg/setings.svg';
 
 const iconsSlice = createSlice({
   name: 'icons',
@@ -75,6 +76,7 @@ const iconsSlice = createSlice({
     Home,
     playstore,
     mobileimage,
+    settings,
     microsoft,
     newmessage,
     HomeActive,

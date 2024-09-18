@@ -6,6 +6,7 @@ import { selectIcons } from '../state/store/iconSlice';
 import { setActiveSection, selectActiveSection } from '../state/store/navbarSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import { openModal } from '../state/store/modalSlice';
+import { openMoreModal } from '../state/store/moreModal';
 import OffcanvasSearch from './OffcanvasSearch';
 import OffcanvasNotification from './OffcanvasNotification';
 
@@ -23,6 +24,10 @@ const Navbar = ({ onLogout }) => {
   const handleSectionChange2 = (section) => {
     if (section === 'Create') {
       dispatch(openModal());
+      dispatch(setActiveSection(section));
+    }
+    else if (section === 'More') {
+      dispatch(openMoreModal());
       dispatch(setActiveSection(section));
     }
 

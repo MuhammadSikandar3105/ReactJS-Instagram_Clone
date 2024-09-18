@@ -1,0 +1,77 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background-color: #333; 
+    color: #fff; 
+    padding: 20px;
+    border-radius: 8px;
+    width: 550px;
+    max-width: 90%;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    color: #fff; 
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #555; 
+    border-radius: 5px;
+    background-color: #222; 
+    color: #fff; 
+  }
+  
+  textarea {
+    resize: vertical; 
+  }
+  
+  input[type="file"] {
+    background-color: #222; 
+    color: #fff; 
+  }
+  
+  .image-preview {
+    max-width: 100%;
+    max-height: 450px; 
+    object-fit: cover; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px; 
+  }
+  
+  .submit-btn {
+    background-color: #3897f0;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
