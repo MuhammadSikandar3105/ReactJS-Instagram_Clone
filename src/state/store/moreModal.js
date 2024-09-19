@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const moreModalSlice = createSlice({
-  name: 'modal',
+  name: 'moreModal', // Changed for clarity
   initialState: {
     isMoreModalOpen: false,
   },
@@ -16,5 +16,7 @@ const moreModalSlice = createSlice({
 });
 
 export const { openMoreModal, closeMoreModal } = moreModalSlice.actions;
-export const selectIsMoreModalOpen = (state) => state.modal.isMoreModalOpen;
+
+export const selectIsMoreModalOpen = (state) => state.moreModal.isMoreModalOpen;
+
 export default moreModalSlice.reducer;

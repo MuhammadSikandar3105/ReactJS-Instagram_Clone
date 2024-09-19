@@ -5,6 +5,7 @@ import likeReducer from './likeSlice';
 import favouriteReducer from './favouriteSlice';
 import modalReducer from './modalSlice';
 import postReducer from './postSlice'
+import moreModalReducer from './moreModal';
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     fav: favouriteReducer,
     modal: modalReducer,
     posts: postReducer,
+    moreModal: moreModalReducer,
   },
 });
 
