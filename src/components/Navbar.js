@@ -21,18 +21,6 @@ const Navbar = ({ onLogout }) => {
   const [isOffcanvasNotificationOpen, setIsOffcanvasNotificationOpen] = useState(false);
 
 
-  const handleSectionChange2 = (section) => {
-    if (section === 'Create') {
-      dispatch(openModal());
-      dispatch(setActiveSection(section));
-    }
-    else if (section === 'More') {
-      dispatch(openMoreModal());
-      dispatch(setActiveSection(section));
-    }
-
-  };
-
   const handleSectionChange = (section) => {
     dispatch(setActiveSection(section));
 
@@ -41,6 +29,14 @@ const Navbar = ({ onLogout }) => {
     }
     else if (section === 'Notifications') {
       toggleOffcanvasNotification();
+    }
+    else if (section === 'Create') {
+      console.log('Opening Create Modal');
+      dispatch(openModal());
+    }
+    else if (section === 'More') {
+      console.log('Opening More Modal');
+      dispatch(openMoreModal());
     }
 
   };
@@ -105,7 +101,7 @@ const Navbar = ({ onLogout }) => {
           </li>
           <li className="nav-item" id="nav-item">
             {/* Reels */}
-            <Link className="nav-link navbar-item" onClick={() => handleSectionChange('Reels')} id="loadReels" aria-disabled="true">
+            <Link className="nav-link navbar-item" onClick={() => handleSectionChange('Reels')} to="/Reels" id="loadReels" aria-disabled="true">
               <img className="reelsActive reelBtn" src={activeSection === 'Reels' ? reelsActive : reels} alt="" />
               <span className="i-d" id="i-d">{activeSection === 'Reels' ? <strong>Reels</strong> : (activeSection === 'search' || activeSection === 'Notifications') ? ' ' : 'Reels'}</span>
             </Link>
@@ -127,7 +123,7 @@ const Navbar = ({ onLogout }) => {
           {/* Other nav items */}
           <li className="nav-item" id="nav-item">
             {/* create */}
-            <Link className="nav-link navbar-item" onClick={() => handleSectionChange2('Create')} aria-disabled="true">
+            <Link className="nav-link navbar-item" onClick={() => handleSectionChange('Create')} aria-disabled="true">
               <img className="createActive" src={activeSection === 'Create' ? create : create} alt="" />
               <span className="i-d" id="i-d">{activeSection === 'Create' ? <strong>Create</strong> : (activeSection === 'search' || activeSection === 'Notifications') ? ' ' : 'Create'}</span>
             </Link>
