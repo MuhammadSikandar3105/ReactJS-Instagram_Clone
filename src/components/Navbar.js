@@ -9,6 +9,7 @@ import { openModal } from '../state/store/modalSlice';
 import { openMoreModal } from '../state/store/moreModal';
 import OffcanvasSearch from './OffcanvasSearch';
 import OffcanvasNotification from './OffcanvasNotification';
+import Mobilenavbar from './Mobilenavbar';
 
 const Navbar = ({ onLogout }) => {
   // SVGs
@@ -154,6 +155,7 @@ const Navbar = ({ onLogout }) => {
           </li>
         </ul>
       </nav>
+      <Mobilenavbar />
       {/* Offcanvas Component */}
       <OffcanvasSearch isOpen={isOffcanvasSearchOpen} toggleOffcanvas={toggleOffcanvasSearch} />
       <OffcanvasNotification isOpen={isOffcanvasNotificationOpen} toggleOffcanvas={toggleOffcanvasNotification} />
