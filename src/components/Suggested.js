@@ -23,7 +23,7 @@ const Suggested = () => {
           <div className="main-scroll-div">
             <div className="cover-sugg-ca">
               <div>
-                <button onclick="scrollr()" className="icon-caro icon-l"><i
+                <button /*onClick="scrollr()"*/ className="icon-caro icon-l"><i
                   className="fas fa-angle-left angle-ic"></i></button>
               </div>
               <div className="scroll-images">
@@ -149,7 +149,7 @@ const Suggested = () => {
                             </div>
                           </div>
                           <div>
-                            <button onclick="scrolll()" className="icon-caro icon-r"><i
+                            <button /*onClick="scrolll()"*/ className="icon-caro icon-r"><i
                               className="fas fa-angle-right angle-ic"></i></button>
                           </div>
                         </div>

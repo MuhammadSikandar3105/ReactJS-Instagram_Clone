@@ -112,7 +112,7 @@
 
     .mob-t-nav {
         display: flex !important;
-        position: fixed;
+        position: fixed !important;
         width: 100%;
         justify-content: space-between;
         top: 0;

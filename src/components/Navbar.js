@@ -13,7 +13,7 @@ import Mobilenavbar from './Mobilenavbar';
 
 const Navbar = ({ onLogout }) => {
   // SVGs
-  const { logo, Home, HomeActive, reels, notification, reelsActive, notificationActive, messageActive2, messages, search, searchActive, Explor, exploreactive, More, threads, instalogo, create, cross, pro } = useSelector(selectIcons);
+  const { logo, Home, HomeActive, reels, notification, reelsActive, notificationActive, messageActive2, messages, search, searchActive, Explor, exploreactive, More, threads, instalogo, create, pro } = useSelector(selectIcons);
   // Active section
   const dispatch = useDispatch();
   const activeSection = useSelector(selectActiveSection);

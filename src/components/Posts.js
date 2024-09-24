@@ -29,7 +29,7 @@ const Posts = () => {
           <div className="top">
             <div className="userdetail">
               <div className="profile-image">
-                <img src={pro} alt="" className="cover" srcset="" />
+                <img src={pro} alt="" className="cover"  />
               </div>
               <h3>Muhammad Sikandar<br /><span>Rahim Yar Khan</span></h3>
             </div>
@@ -58,7 +58,7 @@ const Posts = () => {
           <div className="addcomments">
             <div className="userImg mx-1">
               <img src={pro} alt=""
-                srcset="" className="cover" />
+                 className="cover" />
             </div>
             <input type="text" className="text mx-1" placeholder="Add a comment..." />
           </div>
