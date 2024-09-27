@@ -30,6 +30,10 @@
     .content-main-1 {
         margin-left: 7vmax !important;
     }
+    
+    #content-main-1 {
+        margin-left: 7vmax !important;
+    }
 
     /* instagram/logo of insta */
     .insta-name {
@@ -68,6 +72,10 @@
     }
 
     .content-main-1 {
+        margin-left: 7vmax !important;
+    }
+
+    #content-main-1 {
         margin-left: 7vmax !important;
     }
 
@@ -160,6 +168,9 @@
     }
 
     .content-main-1 {
+        margin-left: 0 !important;
+    }
+    #content-main-1 {
         margin-left: 0 !important;
     }
 
@@ -268,6 +279,10 @@
     }
 
     .content-main-1 {
+        margin: 0 !important;
+    }
+
+    #content-main-1 {
         margin: 0 !important;
     }
 

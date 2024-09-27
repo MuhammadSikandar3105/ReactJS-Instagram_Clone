@@ -309,6 +309,9 @@ ul li {
 .content-main-1 {
     margin-left: 15vmax;
 }
+#content-main-1 {
+    margin-left: 15vmax;
+}
 
 .main-sec {
     display: flex;

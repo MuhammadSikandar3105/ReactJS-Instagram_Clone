@@ -109,7 +109,7 @@ const Navbar = ({ onLogout }) => {
           </li>
           <li className="nav-item" id="nav-item">
             {/* messages */}
-            <Link className="nav-link navbar-item" onClick={() => handleSectionChange('messages')} aria-disabled="true">
+            <Link className="nav-link navbar-item" to="/message" onClick={() => handleSectionChange('messages')} aria-disabled="true">
               <img className="messageActive" src={activeSection === 'messages' ? messageActive2 : messages} alt="" />
               <span className="i-d" id="i-d">{activeSection === 'messages' ? <strong>Messages</strong> : (activeSection === 'search' || activeSection === 'Notifications') ? ' ' : 'Messages'}</span>
             </Link>
