@@ -1,6 +1,4 @@
-:root {
-  font-size: 10px;
-}
+
 
 *,
 *::before,
@@ -18,13 +16,6 @@ body {
 
 img {
   display: block;
-}
-
-.container {
-  max-width: 93.5rem;
-  margin: 0 auto;
-  margin-top: 12%;
-  padding: 0 2rem;
 }
 
 .btn {

@@ -131,7 +131,7 @@ const Navbar = ({ onLogout }) => {
           </li>
           <li className="nav-item" id="nav-item">
             {/* profile */}
-            <Link className="nav-link d-flex align-center" onClick={() => handleSectionChange('Profile')} aria-disabled="true">
+            <Link className="nav-link d-flex align-center" to="/profile" onClick={() => handleSectionChange('Profile')} aria-disabled="true">
               <img className="pro-img" src={pro} alt="" />
               <span className="i-d mt-1 ms-1" id="i-d">{activeSection === 'Profile' ? <strong>Profile</strong> : (activeSection === 'search' || activeSection === 'Notifications') ? ' ' : 'Profile'}</span>
             </Link>
