@@ -54,58 +54,58 @@ const PostModal = () => {
 
   return (
     <div className="modal-overlay">
-  <div className="modal-content">
-    <div className="modal-header">
-      <h2>Create New Post</h2>
-      <button onClick={handleClose} className="close-btn">&times;</button>
+      <div className="modal-content">
+        <div className="modal-header">
+          <h2>Create New Post</h2>
+          <button onClick={handleClose} className="close-btn">&times;</button>
+        </div>
+        <form onSubmit={handleSubmit} className="post-form">
+          <div className="form-group image-upload">
+            <input
+              type="file"
+              id="image"
+              accept="image/*"
+              onChange={handleImageChange}
+              required
+            />
+            {image && <img src={URL.createObjectURL(image)} alt="Selected preview" className="image-preview" />}
+          </div>
+          <div className="form-group">
+            <label htmlFor="caption">Caption</label>
+            <textarea
+              id="caption"
+              value={caption}
+              onChange={(e) => setCaption(e.target.value)}
+              required
+              placeholder="Write a caption..."
+            ></textarea>
+          </div>
+          <div className="form-group">
+            <label htmlFor="location">Location</label>
+            <input
+              type="text"
+              id="location"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+              placeholder="Add location"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="hashtags">Hashtags</label>
+            <input
+              type="text"
+              id="hashtags"
+              value={hashtags}
+              onChange={(e) => setHashtags(e.target.value)}
+              placeholder="Add hashtags"
+            />
+          </div>
+          <button type="submit" className="submit-btn" disabled={loading}>
+            {loading ? 'Posting...' : 'Post'}
+          </button>
+        </form>
+      </div>
     </div>
-    <form onSubmit={handleSubmit} className="post-form">
-      <div className="form-group image-upload">
-        <input
-          type="file"
-          id="image"
-          accept="image/*"
-          onChange={handleImageChange}
-          required
-        />
-        {image && <img src={URL.createObjectURL(image)} alt="Selected preview" className="image-preview" />}
-      </div>
-      <div className="form-group">
-        <label htmlFor="caption">Caption</label>
-        <textarea
-          id="caption"
-          value={caption}
-          onChange={(e) => setCaption(e.target.value)}
-          required
-          placeholder="Write a caption..."
-        ></textarea>
-      </div>
-      <div className="form-group">
-        <label htmlFor="location">Location</label>
-        <input
-          type="text"
-          id="location"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-          placeholder="Add location"
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="hashtags">Hashtags</label>
-        <input
-          type="text"
-          id="hashtags"
-          value={hashtags}
-          onChange={(e) => setHashtags(e.target.value)}
-          placeholder="Add hashtags"
-        />
-      </div>
-      <button type="submit" className="submit-btn" disabled={loading}>
-        {loading ? 'Posting...' : 'Post'}
-      </button>
-    </form>
-  </div>
-</div>
 
   );
 };

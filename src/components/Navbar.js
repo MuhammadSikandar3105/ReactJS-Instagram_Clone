@@ -11,7 +11,7 @@ import OffcanvasSearch from './OffcanvasSearch';
 import OffcanvasNotification from './OffcanvasNotification';
 import Mobilenavbar from './Mobilenavbar';
 
-const Navbar = ({ onLogout }) => {
+const Navbar = () => {
   // SVGs
   const { logo, Home, HomeActive, reels, notification, reelsActive, notificationActive, messageActive2, messages, search, searchActive, Explor, exploreactive, More, threads, instalogo, create, pro } = useSelector(selectIcons);
   // Active section
@@ -60,12 +60,6 @@ const Navbar = ({ onLogout }) => {
     }
   };
 
-
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    onLogout(); // Call the onLogout prop to update authentication state
-    navigate('/login');
-  };
 
   return (
     <section>
@@ -148,7 +142,7 @@ const Navbar = ({ onLogout }) => {
           </li>
           <li className="nav-item" id="nav-item">
             {/* More */}
-            <Link className="nav-link navbar-item" onClick={handleLogout} aria-disabled="true">
+            <Link className="nav-link navbar-item" onClick={() => handleSectionChange('More')} aria-disabled="true">
               <img src={More} alt='img' />
               <span className="i-d ms-0 ps-0" id="i-d">{activeSection === 'More' ? <strong>More</strong> : (activeSection === 'search' || activeSection === 'Notifications') ? ' ' : 'More'}</span>
             </Link>

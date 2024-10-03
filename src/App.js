@@ -48,6 +48,7 @@ function App() {
           <Route path="/create" element={<PrivateRoute><Create /></PrivateRoute>} />
         </Routes>
          <PostModal />
+         <More />
       </div>
     </Router>
   );

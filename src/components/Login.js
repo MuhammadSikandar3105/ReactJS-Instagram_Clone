@@ -7,7 +7,7 @@ import '../styles/Loginpage.css';
 
 const Login = ({ setIsAuthenticated }) => {  // Ensure this prop is passed if needed
     // svgs
-    const { instalogin, logo } = useSelector(selectIcons);
+    const { logo } = useSelector(selectIcons);
     const [credentials, setCredentials] = useState({ email: '', password: '' });
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
