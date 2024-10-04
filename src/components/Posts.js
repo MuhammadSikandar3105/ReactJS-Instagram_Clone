@@ -28,7 +28,7 @@ const Posts = () => {
         <div className="card mb-5">
           <div className="top">
             <div className="userdetail">
-              <div className="profile-image">
+              <div className="profile-image2 ms-2">
                 <img src={pro} alt="" className="cover"  />
               </div>
               <h3>Muhammad Sikandar<br /><span>Rahim Yar Khan</span></h3>
@@ -41,7 +41,7 @@ const Posts = () => {
             <img src={pro} className="cover" alt="" />
           </div>
           <div className="actionsBtns">
-            <div className="left">
+            <div className="left d-flex felx-row ">
               <img className="like-button mx-2" alt='' onClick={handleLike} src={liked ? heart_red : heart} />
               <img className='mx-2' src={comment} alt="" />
               <img className='mx-2' src={share} alt="" />

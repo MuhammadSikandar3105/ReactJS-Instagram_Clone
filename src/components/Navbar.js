@@ -68,7 +68,7 @@ const Navbar = () => {
           {/* logo */}
           <Link className="navbar-brand my-4 ms-0 px-3" to="/">
             <span id="insta-logo" className="insta-logo ms-3"></span>
-            <img id="insta-name" className="insta-name" onClick={() => handleSectionChange('home')} src={(activeSection === 'search' || activeSection === 'Notifications') ? instalogo : logo} alt="" style={{ marginLeft: (activeSection === 'search' || 'Notifications') ? '-12px' : 'auto' }} />
+            <img id="insta-name" className="insta-name" onClick={() => handleSectionChange('home')} src={(activeSection === 'search' || activeSection === 'Notifications') ? instalogo : logo} alt="" style={{ marginLeft: (activeSection === 'search' || 'Notifications') ? '2px' : 'auto' }} />
           </Link>
           <li className="nav-item" id="nav-item">
             {/* Home */}

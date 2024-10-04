@@ -68,12 +68,21 @@ import playstore from '../assets/images/playstore.png';
 import mobileimage from '../assets/images/mobileimg.png';
 import microsoft from '../assets/images/Microsoft image.PNG';
 import settings from '../assets/svg/setings.svg';
+import activity from '../assets/svg/activity.svg';
+import saved from '../assets/svg/saved.svg';
+import switch_appearence from '../assets/svg/switchappearence.svg';
+import report_problem from '../assets/svg/reportproblem.svg';
+
 
 const iconsSlice = createSlice({
   name: 'icons',
   initialState: {
     logo,
     Home,
+    report_problem,
+    switch_appearence,
+    saved,
+    activity,
     playstore,
     mobileimage,
     settings,
