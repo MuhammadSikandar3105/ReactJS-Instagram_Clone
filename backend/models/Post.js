@@ -9,7 +9,7 @@ const PostsSchema = new Schema({
     },
     imageUrl: {
         type: String, // To store the image URL for the post
-        required: true
+        required: false
     },
     caption: {
         type: String,

@@ -4,7 +4,7 @@ import '../styles/responsive.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectIcons } from '../state/store/iconSlice';
 import { setActiveSection, selectActiveSection } from '../state/store/navbarSlice';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { openModal } from '../state/store/modalSlice';
 import { openMoreModal } from '../state/store/moreModal';
 import OffcanvasSearch from './OffcanvasSearch';
@@ -17,7 +17,6 @@ const Navbar = () => {
   // Active section
   const dispatch = useDispatch();
   const activeSection = useSelector(selectActiveSection);
-  const navigate = useNavigate();
   const [isOffcanvasSearchOpen, setIsOffcanvasSearchOpen] = useState(false);
   const [isOffcanvasNotificationOpen, setIsOffcanvasNotificationOpen] = useState(false);
 

@@ -22,7 +22,7 @@ const OffcanvasNotification = ({ isOpen, toggleOffcanvas }) => {
 
                     <div className="recent-search-result my-2">
                         <div className="first-user d-flex flex-row">
-                            <div className="first-user-image"><img src={pro} alt="image" /></div>
+                            <div className="first-user-image"><img src={pro} alt="profile" /></div>
                             <div className="first-user-name d-flex ">
                                 <div className="first-user-name-name">SK Malik</div>
                             </div>

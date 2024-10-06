@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { selectIcons } from '../state/store/iconSlice';
@@ -13,9 +13,9 @@ const More = () => {
 
   const modalRef = useRef(null);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     dispatch(closeMoreModal());
-  };
+  }, [dispatch]);
 
   // Effect to handle clicks outside the modal
   useEffect(() => {
@@ -33,7 +33,7 @@ const More = () => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isModalOpen]);
+  }, [isModalOpen, handleClose]);
   // Logout Handle
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -72,7 +72,7 @@ const More = () => {
             <img src={report_problem} alt="" />
             <p style={{ margin: '4px 0px 0px 10px' }}>Report a Problem</p>
           </div>
-          <hr style={{ border: '3px solid', display: 'block', width: '100%', flexGrow: 1 }}/>
+          <hr style={{ border: '3px solid', display: 'block', width: '100%', flexGrow: 1 }} />
           {/* switch acounts */}
           <div className="settings d-flex flex-row align-items-center my-1">
             <p style={{ margin: '4px 0px 0px 0' }}>Switch Acounts</p>

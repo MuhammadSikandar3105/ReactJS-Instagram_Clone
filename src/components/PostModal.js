@@ -30,25 +30,32 @@ const PostModal = () => {
     formData.append('image', image);
     formData.append('caption', caption);
     formData.append('location', location);
-    formData.append('hashtags', hashtags);
+    // hashtags
+    const hashtagsArray = hashtags.split(',').map(tag => tag.trim()).filter(tag => tag); // Filter out any empty strings
+    hashtagsArray.forEach(tag => formData.append('hashtags[]', tag)); // Append each hashtag as a separate entry
+
 
     try {
       setLoading(true);
+
+      // Include the auth token in the request headers
       const response = await axios.post('/api/posts/addpost', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
+          'auth-token': localStorage.getItem('token'), // Ensure the token is being fetched from localStorage or the proper source
         },
       });
 
-      dispatch(addPostSuccess(response.data)); // Dispatch a success action
+      dispatch(addPostSuccess(response.data)); // Dispatch success action
       handleClose(); // Close the modal
     } catch (error) {
       console.error(error, "error in sending");
-      dispatch(addPostFailure(error.response.data)); // Dispatch a failure action
+      dispatch(addPostFailure(error.response.data)); // Dispatch failure action
     } finally {
       setLoading(false);
     }
   };
+
 
   if (!isModalOpen) return null;
 
@@ -66,7 +73,6 @@ const PostModal = () => {
               id="image"
               accept="image/*"
               onChange={handleImageChange}
-              required
             />
             {image && <img src={URL.createObjectURL(image)} alt="Selected preview" className="image-preview" />}
           </div>

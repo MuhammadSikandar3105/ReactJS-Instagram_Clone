@@ -1,23 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const multer = require('multer');
-const path = require('path');
-const fetchuser = require('../middleware/fetchuser');
-const Post = require('../models/Post');
+const fetchuser = require('../middleware/fetchuser'); 
+const Post = require('../models/Post'); 
 const { body, validationResult } = require('express-validator');
-
-// Configure multer for file uploads
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, path.join(__dirname, '../uploads')); // Ensure this path is correct
-    },
-    filename: function (req, file, cb) {
-      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-      cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
-    }
-  });
-  
-  const upload = multer({ storage: storage });
 
 // ROUTE 1: Get All the Posts using: GET "/api/posts/fetchallposts". Login required
 router.get('/fetchallposts', fetchuser, async (req, res) => {
@@ -30,13 +15,14 @@ router.get('/fetchallposts', fetchuser, async (req, res) => {
     }
 });
 
-// ROUTE 2: Add a new Post using: POST "/api/posts/addpost". Login required, image upload
-router.post('/addpost', fetchuser, upload.single('image'), [
+// ROUTE 2: Add a new Post using: POST "/api/posts/addpost". Login required
+router.post('/addpost', fetchuser, [
+    body('imageUrl', 'Enter a valid image URL').isURL(),
     body('caption', 'Caption must be at least 5 characters').isLength({ min: 5 }),
     body('hashtags', 'Hashtags should be an array of strings').isArray()
 ], async (req, res) => {
     try {
-        const { caption, location, hashtags } = req.body;
+        const { imageUrl, caption, location, hashtags } = req.body;
 
         // If there are errors, return Bad request and the errors
         const errors = validationResult(req);
@@ -44,17 +30,13 @@ router.post('/addpost', fetchuser, upload.single('image'), [
             return res.status(400).json({ errors: errors.array() });
         }
 
-        // Create a new post with the image path
         const post = new Post({
-            imageUrl: req.file ? req.file.path : '', // Get image path from multer
+            imageUrl,
             caption,
             location,
             hashtags,
             user: req.user.id
         });
-
-        console.log('File:', req.file);
-        console.log('Body:', req.body);
 
         const savedPost = await post.save();
 
@@ -65,13 +47,13 @@ router.post('/addpost', fetchuser, upload.single('image'), [
     }
 });
 
-// ROUTE 3: Update an existing Post using: PUT "/api/posts/updatepost/:id". Login required, image upload
-router.put('/updatepost/:id', fetchuser, upload.single('image'), async (req, res) => {
-    const { caption, location, hashtags } = req.body;
+// ROUTE 3: Update an existing Post using: PUT "/api/posts/updatepost/:id". Login required
+router.put('/updatepost/:id', fetchuser, async (req, res) => {
+    const { imageUrl, caption, location, hashtags } = req.body;
     try {
         // Create a newPost object
         const updatedPost = {};
-        if (req.file) { updatedPost.imageUrl = req.file.path }; // Update image if a new one is uploaded
+        if (imageUrl) { updatedPost.imageUrl = imageUrl };
         if (caption) { updatedPost.caption = caption };
         if (location) { updatedPost.location = location };
         if (hashtags) { updatedPost.hashtags = hashtags };
