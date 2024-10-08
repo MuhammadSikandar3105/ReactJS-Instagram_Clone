@@ -20,7 +20,19 @@ const storage = multer.diskStorage({
   const upload = multer({ storage: storage });
 
 // ROUTE 1: Get All the Posts using: GET "/api/posts/fetchallposts". Login required
-router.get('/fetchallposts', fetchuser, async (req, res) => {
+router.get('/fetchallposts', async (req, res) => {
+    try {
+        // Fetch all posts from the database
+        const posts = await Post.find();
+        res.json(posts);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+// Route 2 for profile posts authentication required
+router.get('/fetchalluserposts', fetchuser, async (req, res) => {
     try {
         const posts = await Post.find({ user: req.user.id });
         res.json(posts);
@@ -46,13 +58,12 @@ router.post('/addpost', fetchuser, upload.single('image'), [
 
         // Create a new post with the image path
         const post = new Post({
-            imageUrl: req.file ? req.file.path : '', // Get image path from multer
+            imageUrl: req.file ? `/uploads/${req.file.filename}` : '', // Store relative path
             caption,
             location,
             hashtags,
             user: req.user.id
         });
-
         console.log('File:', req.file);
         console.log('Body:', req.body);
 

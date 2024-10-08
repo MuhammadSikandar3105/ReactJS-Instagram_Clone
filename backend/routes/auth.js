@@ -96,7 +96,7 @@ router.post('/login', [
 });
 
 // Route 3: Get user details using: POST "/api/auth/getuser". Login required
-router.post('/getuser', fetchuser, async (req, res) => {
+router.get('/getuser', fetchuser, async (req, res) => {
     try {
         const userid = req.user.id;
         const user = await User.findById(userid).select('-password');
@@ -106,6 +106,7 @@ router.post('/getuser', fetchuser, async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 });
+
 
 // Route 4: Logout a user using: POST "/api/auth/logout". Login required
 router.post('/logout', fetchuser, (req, res) => {

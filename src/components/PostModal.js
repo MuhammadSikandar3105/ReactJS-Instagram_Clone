@@ -10,6 +10,8 @@ const PostModal = () => {
   const isModalOpen = useSelector(selectIsModalOpen);
 
   const [image, setImage] = useState(null);
+  const [video, setVideo] = useState(null); // Added video state
+  const [audio, setAudio] = useState(null);
   const [caption, setCaption] = useState('');
   const [location, setLocation] = useState('');
   const [hashtags, setHashtags] = useState('');
@@ -19,15 +21,36 @@ const PostModal = () => {
     dispatch(closeModal());
   };
 
-  const handleImageChange = (e) => {
-    setImage(e.target.files[0]); // Store the actual file, not the data URL
+   // handles for media change 
+  const handleMediaChange = (e) => {
+    const files = e.target.files;
+    const fileArray = Array.from(files);
+    
+    fileArray.forEach(file => {
+      const fileType = file.type.split('/')[0];
+      if (fileType === 'image') {
+        setImage(file);
+        setVideo(null);
+        setAudio(null);
+      } else if (fileType === 'video') {
+        setVideo(file);
+        setImage(null);
+        setAudio(null);
+      } else if (fileType === 'audio') {
+        setAudio(file);
+        setImage(null);
+        setVideo(null);
+      }
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append('image', image);
+    if (image) formData.append('image', image);
+    if (video) formData.append('video', video);
+    if (audio) formData.append('audio', audio);
     formData.append('caption', caption);
     formData.append('location', location);
     // hashtags
@@ -45,16 +68,25 @@ const PostModal = () => {
           'auth-token': localStorage.getItem('token'), // Ensure the token is being fetched from localStorage or the proper source
         },
       });
+      const newPost = response.data;
 
-      dispatch(addPostSuccess(response.data)); // Dispatch success action
+      if (newPost) {
+        dispatch(addPostSuccess(newPost)); // Dispatch success action
+      } else {
+        throw new Error('New post data is not defined');
+      }
+      window.location.reload();
       handleClose(); // Close the modal
     } catch (error) {
       console.error(error, "error in sending");
-      dispatch(addPostFailure(error.response.data)); // Dispatch failure action
+      const errorMessage = error.response ? error.response.data : 'An unexpected error occurred';
+      dispatch(addPostFailure(errorMessage)); // Dispatch failure action
     } finally {
       setLoading(false);
     }
   };
+
+ 
 
 
   if (!isModalOpen) return null;
@@ -67,14 +99,17 @@ const PostModal = () => {
           <button onClick={handleClose} className="close-btn">&times;</button>
         </div>
         <form onSubmit={handleSubmit} className="post-form">
-          <div className="form-group image-upload">
+          <div className="form-group media-upload">
             <input
               type="file"
-              id="image"
-              accept="image/*"
-              onChange={handleImageChange}
+              id="media"
+              accept="image/*, video/*, audio/*"
+              onChange={handleMediaChange}
+              multiple // Allows multiple file selection
             />
             {image && <img src={URL.createObjectURL(image)} alt="Selected preview" className="image-preview" />}
+            {video && <video src={URL.createObjectURL(video)} controls className="video-preview" />}
+            {audio && <audio src={URL.createObjectURL(audio)} controls className="audio-preview" />}
           </div>
           <div className="form-group">
             <label htmlFor="caption">Caption</label>
