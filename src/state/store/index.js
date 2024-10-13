@@ -6,6 +6,8 @@ import favouriteReducer from './favouriteSlice';
 import modalReducer from './modalSlice';
 import postReducer from './postSlice'
 import moreModalReducer from './moreModal';
+import storyModalReducer from './storymodal';
+
 
 const store = configureStore({
   reducer: {
@@ -16,6 +18,7 @@ const store = configureStore({
     modal: modalReducer,
     posts: postReducer,
     moreModal: moreModalReducer,
+    storyModal: storyModalReducer,
   },
 });
 

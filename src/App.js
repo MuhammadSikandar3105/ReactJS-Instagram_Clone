@@ -13,6 +13,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import PrivateRoute from './components/PrivateRoute'; 
 import Message from './components/Message';
+import Storymodal from './components/Storymodal';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('token'));
@@ -49,9 +50,11 @@ function App() {
         </Routes>
          <PostModal />
          <More />
+         <Storymodal />
       </div>
     </Router>
   );
+  
 }
 
 export default App;

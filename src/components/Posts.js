@@ -19,7 +19,7 @@ const Posts = () => {
   // Fetch posts from the API
   const fetchPosts = async () => {
     try {
-      const response = await axios.get('/api/posts/fetchallposts'); // Replace with your API endpoint
+      const response = await axios.get('/api/posts/fetchallposts'); 
       setPosts(response.data); // Set the fetched posts data
     } catch (error) {
       console.error('Error fetching posts:', error);

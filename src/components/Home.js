@@ -8,7 +8,7 @@ const Home = () => {
     <>
       <div className="content-main-1" id="content-main-1">
         <section className="main-sec">
-          <div className=" d-flex justify-content-center">
+          <div className=" d-flex justify-content-center align-items-center">
             <div className="container post-sec d-flex justify-content-center">
               < Story />
               <Suggested />
