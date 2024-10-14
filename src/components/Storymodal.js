@@ -8,6 +8,7 @@ import '../styles/postModal.css';
 const Storymodal = () => {
   const dispatch = useDispatch();
   const isStoryModalOpen = useSelector(selectIsStoryModalOpen);
+ 
 
   const [media, setMedia] = useState(null); // Handle both image and video in one state
   const [caption, setCaption] = useState('');

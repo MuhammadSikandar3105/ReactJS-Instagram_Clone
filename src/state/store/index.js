@@ -7,6 +7,7 @@ import modalReducer from './modalSlice';
 import postReducer from './postSlice'
 import moreModalReducer from './moreModal';
 import storyModalReducer from './storymodal';
+import storyRetrieveModalReducer from './storyRetrieveModal';
 
 
 const store = configureStore({
@@ -19,6 +20,7 @@ const store = configureStore({
     posts: postReducer,
     moreModal: moreModalReducer,
     storyModal: storyModalReducer,
+    storyRetrieveModal: storyRetrieveModalReducer,
   },
 });
 

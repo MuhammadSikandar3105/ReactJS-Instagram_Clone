@@ -31,6 +31,27 @@ router.get('/fetchallstories', async (req, res) => {
     }
 });
 
+// fetch all stories for story modal
+
+router.get('/fetchstoriesmodal/:userId', async (req, res) => {
+    try {
+        const { userId } = req.params; // Extract user ID from the URL parameters
+
+        // Fetch all stories for the specified user
+        const stories = await Story.find({ user: userId });
+
+        if (stories.length === 0) {
+            return res.status(404).json({ msg: 'No stories found for this user' });
+        }
+
+        res.json(stories);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+
 
 // ROUTE 2: Add a new Story using: POST "/api/stories/addstory". Login required
 // Add the fetchuser middleware to the route

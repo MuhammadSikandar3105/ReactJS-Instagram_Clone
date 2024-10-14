@@ -1,0 +1,98 @@
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8); /* Dark semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure modal is above other content */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #1c1c1c; /* Dark background for modal */
+  border-radius: 12px;
+  width: 90%; /* Responsive width */
+  max-width: 600px; /* Maximum width */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  overflow: hidden; /* Prevent overflow */
+}
+
+/* Modal Header */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #333; /* Darker border for separation */
+}
+
+.story-header {
+  display: flex;
+  align-items: center;
+}
+
+.story-profile-pic {
+  width: 40px; /* Profile picture size */
+  height: 40px;
+  border-radius: 50%; /* Circular profile picture */
+  margin-right: 12px; /* Spacing */
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 24px; /* Close button size */
+  cursor: pointer;
+  color: #ffffff; /* White close button color */
+}
+
+/* Modal Body */
+.modal-body {
+  padding: 16px;
+  text-align: center; /* Center align text */
+  color: #ffffff; /* White text for readability */
+}
+
+/* Story Display */
+.story-display {
+  margin: 20px 0; /* Margin for spacing */
+}
+
+.story-image {
+  width: 100%; /* Full width image */
+  border-radius: 8px; /* Rounded corners for image */
+  max-height: 400px; /* Maximum height for stories */
+  object-fit: cover; /* Cover for better scaling */
+}
+
+/* Story Navigation */
+.story-navigation {
+  display: flex;
+  justify-content: space-between; /* Space between buttons */
+  margin-top: 10px;
+}
+
+.story-navigation button {
+  padding: 10px 16px; /* Padding for buttons */
+  border: none;
+  border-radius: 5px; /* Rounded corners for buttons */
+  background-color: #007bff; /* Primary color for buttons */
+  color: white; /* White text */
+  font-weight: bold;
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Transition effect */
+}
+
+.story-navigation button:hover:not(:disabled) {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+.story-navigation button:disabled {
+  background-color: #555; /* Dark gray color for disabled buttons */
+  cursor: not-allowed; /* Not-allowed cursor */
+}
