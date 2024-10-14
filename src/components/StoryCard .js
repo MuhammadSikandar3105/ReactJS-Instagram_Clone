@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   closeStoryRetrieveModal,
@@ -12,6 +12,10 @@ import '../styles/story-card-sec.css'; // Adjust with appropriate styles
 const StoryRetrieveModal = () => {
   const { pro } = useSelector(selectIcons);
   const dispatch = useDispatch();
+
+  const [isPlaying, setIsPlaying] = useState(true); //play/pause state
+  const videoRef = useRef(null);
+
   const isStoryRetrieveModalOpen = useSelector(selectIsStoryRetrieveModalOpen);
   const currentUser = useSelector(selectCurrentUser); // Get the current user from Redux state
   const [userStories, setUserStories] = useState([]);
@@ -51,6 +55,18 @@ const StoryRetrieveModal = () => {
   const handlePreviousStory = () => {
     if (currentStoryIndex > 0) {
       setCurrentStoryIndex(currentStoryIndex - 1);
+    }
+  };
+
+  // play pause the story 
+  const handlePlayPause = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying); // Toggle the play/pause state
     }
   };
 
@@ -96,13 +112,39 @@ const StoryRetrieveModal = () => {
             <p>Loading stories...</p>
           ) : userStories.length > 0 ? (
             <>
-              {/* Show the current story */}
               <div className="story-display">
-                <img
-                  src={userStories[currentStoryIndex].fileUrl}
-                  alt="User story"
-                  className="story-image"
-                />
+                {userStories[currentStoryIndex].fileUrl ? (
+                  userStories[currentStoryIndex].fileUrl.endsWith('.jpg') ||
+                    userStories[currentStoryIndex].fileUrl.endsWith('.jpeg') ||
+                    userStories[currentStoryIndex].fileUrl.endsWith('.png') ? (
+                    <img
+                      src={userStories[currentStoryIndex].fileUrl}
+                      alt="User story"
+                      className="story-image"
+                    />
+                  ) : userStories[currentStoryIndex].fileUrl.endsWith('.MP4') ||
+                    userStories[currentStoryIndex].fileUrl.endsWith('.mov') ? (
+                      <div className="story-video-container">
+                      <video
+                        src={userStories[currentStoryIndex].fileUrl}
+                        className="story-video"
+                        autoPlay
+                        ref={videoRef}
+                        onClick={handlePlayPause} // Add play/pause functionality when clicking the video
+                      />
+                      {!isPlaying && (
+                        <button className="play-pause-btn" onClick={handlePlayPause}>
+                          &#9658; {/* Play icon */}
+                        </button>
+                      )}
+                    </div>
+                  ) : (
+                    <p>Unsupported media type</p>
+                  )
+                ) : (
+                  <p>No story available.</p>
+                )}
+
                 <p>{userStories[currentStoryIndex].caption}</p>
               </div>
 

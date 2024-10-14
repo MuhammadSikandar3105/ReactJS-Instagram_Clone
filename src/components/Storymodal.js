@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeStoryModal, selectIsStoryModalOpen } from '../state/store/storymodal';
 import { addPostSuccess, addPostFailure } from '../state/store/postSlice'; // update action creators if needed
-import '../styles/postModal.css';
+import '../styles/storymodal.css';
 
 const Storymodal = () => {
   const dispatch = useDispatch();
   const isStoryModalOpen = useSelector(selectIsStoryModalOpen);
- 
+
 
   const [media, setMedia] = useState(null); // Handle both image and video in one state
   const [caption, setCaption] = useState('');
@@ -21,7 +21,7 @@ const Storymodal = () => {
   const handleMediaChange = (e) => {
     const file = e.target.files[0];
     const fileType = file.type.split('/')[0];
-    
+
     if (fileType === 'image' || fileType === 'video') {
       setMedia(file);
     } else {
@@ -80,11 +80,15 @@ const Storymodal = () => {
         </div>
         <form onSubmit={handleSubmit} className="post-form">
           <div className="form-group media-upload">
+            <label htmlFor="media-upload" className="media-upload-label">
+              Choose File
+            </label>
             <input
               type="file"
-              id="media"
+              id="media-upload"
               accept="image/*, video/*"
               onChange={handleMediaChange}
+              className="media-input"
             />
             {media && media.type.startsWith('image') && (
               <img src={URL.createObjectURL(media)} alt="Selected preview" className="image-preview" />
