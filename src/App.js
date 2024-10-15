@@ -15,6 +15,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Message from './components/Message';
 import Storymodal from './components/Storymodal';
 import StoryRetrieveModal from './components/StoryCard ';
+import UpdateProfileModal from './components/ProfilePicModal';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('token'));
@@ -53,6 +54,7 @@ function App() {
          <More />
          <Storymodal />
          <StoryRetrieveModal />
+         <UpdateProfileModal />
       </div>
     </Router>
   );

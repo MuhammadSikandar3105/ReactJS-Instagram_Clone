@@ -134,4 +134,20 @@ router.delete('/deletestory/:id', fetchuser, async (req, res) => {
     }
 });
 
+// auto delete on timer
+router.delete('/deletestoryauto/:id', async (req, res) => {
+    try {
+        // Find the story to be deleted
+        let story = await Story.findById(req.params.id);
+        if (!story) { return res.status(404).send("Not Found") }
+
+        // Delete the story
+        story = await Story.findByIdAndDelete(req.params.id);
+        res.json({ "Success": "Story has been deleted", story: story });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
 module.exports = router;

@@ -40,6 +40,8 @@ const More = () => {
     handleClose();
     navigate('/login');
   };
+
+
   if (!isModalOpen) return null;
 
 
@@ -48,7 +50,7 @@ const More = () => {
       <div className="modal-content2" ref={modalRef}>
         <div className="d-flex flex-column justify-content-between align-item-center">
           {/* settings */}
-          <div className="settings d-flex flex-row align-items-center my-3">
+          <div className="settings d-flex flex-row align-items-center my-3"  >
             <img src={settings} alt="" />
             <p style={{ margin: '4px 0px 0px 10px' }}>Settings</p>
           </div>

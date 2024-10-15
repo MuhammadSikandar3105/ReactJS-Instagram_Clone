@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import '../styles/stylesheet.css';
 import '../styles/responsive.css';
 import '../styles/h.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { openProfilePicModal } from '../state/store/profilepicSlice';
 import { selectIcons } from '../state/store/iconSlice';
 import axios from 'axios';
 
@@ -12,6 +13,7 @@ const Profile = () => {
   const [user, setUser] = useState({}); // Ensure this starts as an object
   // const [postDelete, setPostDelete] = useState('');
 
+  const dispatch = useDispatch();
   // svgs
   const { pro } = useSelector(selectIcons);
 
@@ -63,13 +65,23 @@ const Profile = () => {
     }
   };
 
+  const handleProfilePicModal = () => {
+    dispatch(openProfilePicModal());
+  };
+
   return (
     <>
       <header>
         <div className="container">
           <div className="profile">
-            <div className="profile-image">
-              <img src={pro} alt="" />
+            <div className="profile-image" >
+              <img src={user.profilePictureUrl || pro} alt="" onClick={handleProfilePicModal} />
+              <span className="visually-hidden"></span>
+              <i className="fas fa-comment" aria-hidden="true" style={{
+                position: 'absolute', 
+                opacity: 0, 
+                transition: 'opacity 0.3s ease'
+              }} ></i>
             </div>
 
             <div className="profile-user-settings">
@@ -79,7 +91,7 @@ const Profile = () => {
               <button className="btn profile-edit-btn">Edit Profile</button>
 
               <button className="btn profile-settings-btn" aria-label="profile settings">
-                <i className="fas fa-cog" aria-hidden="true"></i>
+                <i className="fas fa-cog" aria-hidden="true" ></i>
               </button>
             </div>
 

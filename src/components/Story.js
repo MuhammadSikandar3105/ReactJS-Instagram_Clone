@@ -60,7 +60,7 @@ const Story = () => {
   const deleteStory = async (storyId) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`/api/story/deletestory/${storyId}`, {
+      await axios.delete(`/api/story/deletestoryauto/${storyId}`, {
         headers: { 'auth-token': token }
       });
       console.log(`Story ${storyId} deleted`);
@@ -92,11 +92,32 @@ const Story = () => {
     <div className="stories d-flex">
       <div className="story-card">
         <div className="back-linear-not" onClick={handleStorymodal}>
-          <img 
-            src={currentStoryImage || pro} 
-            style={currentStoryImage ? {border: '2px solid red'} : {}} 
-            alt="Current User Story" 
-          />
+          {currentStoryImage ? (
+            /\.(jpg|jpeg|png|gif)$/i.test(currentStoryImage) ? (
+              <img
+                src={currentStoryImage || pro}
+                alt=""
+                style={currentStoryImage ? { border: '2px solid red' } : {}}
+              />
+            ) : /\.(mp4|webm|ogg)$/i.test(currentStoryImage) ? (
+              <video
+                src={currentStoryImage}
+                controls
+                alt="Current User Story Video"
+                style={currentStoryImage ? { border: '2px solid red' } : {}}
+              />
+            ) : (
+              <img
+                src={pro} // Fallback to default profile picture if no media matches
+                alt="Default Profile"
+              />
+            )
+          ) : (
+            <img
+              src={pro} // Fallback to default profile picture if no media
+              alt="Default Profile"
+            />
+          )}
           <div className="plus-icon-story">
             <img src={pluspost} alt="Plus Icon" />
           </div>
@@ -107,8 +128,17 @@ const Story = () => {
       </div>
       {story && story.length > 0 && story.map(user => (
         <div key={user._id} className="story-card">
-          <div className="back-linear" onClick={() => handleStoryRetrievemodal(user)} >
-            <img src={user.profilePictureUrl || pro} alt={user.name} />
+          <div className="back-linear" onClick={() => handleStoryRetrievemodal(user)}>
+            {user
+              ? (user.profilePictureUrl?.endsWith('.mp4') || user.profilePictureUrl?.endsWith('.avi') || user.profilePictureUrl?.endsWith('.mov')
+                ? <video src={user.profilePictureUrl} controls className="story-video" alt={user.name} />
+                : <img src={user.profilePictureUrl || pro} alt={user.name} className="story-image" />
+              )
+              : (currentStoryImage?.endsWith('.mp4') || currentStoryImage?.endsWith('.avi') || currentStoryImage?.endsWith('.mov')
+                ? <video src={currentStoryImage} controls className="story-video" alt="Current Story" />
+                : <img src={currentStoryImage || pro} alt="Current Story" className="story-image" />
+              )
+            }
           </div>
           <div className="name">
             <p>{user.name.length > 7 ? user.name.slice(0, 7) + '...' : user.name}</p>

@@ -27,7 +27,7 @@
     margin: auto;
 
 }
-.back-linear-not img{
+.back-linear-not img, video{
     position: absolute;
     width: 63px;
     height: 63px;

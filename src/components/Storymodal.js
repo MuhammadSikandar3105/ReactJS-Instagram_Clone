@@ -73,7 +73,7 @@ const Storymodal = () => {
 
   return (
     <div className="modal-overlay">
-      <div className="modal-content">
+      <div className="modal-content2">
         <div className="modal-header">
           <h2>Add New Story</h2>
           <button onClick={handleClose} className="close-btn">&times;</button>

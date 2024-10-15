@@ -26,6 +26,7 @@ const StoryRetrieveModal = () => {
   const handleClose = () => {
     dispatch(closeStoryRetrieveModal());
     setCurrentStoryIndex(0); // Reset story index when closing
+    setIsPlaying(false);
   };
 
   // Fetch user stories
@@ -80,6 +81,7 @@ const StoryRetrieveModal = () => {
   // Auto advance stories after 5 seconds like Instagram
   useEffect(() => {
     if (isStoryRetrieveModalOpen && userStories.length > 0) {
+      setIsPlaying(false);
       const timer = setTimeout(() => {
         handleNextStory();
       }, 5000);
@@ -123,12 +125,12 @@ const StoryRetrieveModal = () => {
                       className="story-image"
                     />
                   ) : userStories[currentStoryIndex].fileUrl.endsWith('.MP4') ||
+                      userStories[currentStoryIndex].fileUrl.endsWith('.mp4') ||
                     userStories[currentStoryIndex].fileUrl.endsWith('.mov') ? (
                       <div className="story-video-container">
                       <video
                         src={userStories[currentStoryIndex].fileUrl}
                         className="story-video"
-                        autoPlay
                         ref={videoRef}
                         onClick={handlePlayPause} // Add play/pause functionality when clicking the video
                       />

@@ -8,6 +8,7 @@ import postReducer from './postSlice'
 import moreModalReducer from './moreModal';
 import storyModalReducer from './storymodal';
 import storyRetrieveModalReducer from './storyRetrieveModal';
+import profilePicModalReducer from './profilepicSlice';
 
 
 const store = configureStore({
@@ -21,6 +22,8 @@ const store = configureStore({
     moreModal: moreModalReducer,
     storyModal: storyModalReducer,
     storyRetrieveModal: storyRetrieveModalReducer,
+    profilePicModal: profilePicModalReducer,
+
   },
 });
 

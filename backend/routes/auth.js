@@ -5,8 +5,22 @@ const bcrypt = require('bcryptjs');
 const { body, validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
 const fetchuser = require('../middleware/fetchuser');
+const multer = require('multer'); // For handling file uploads
 
 const JWT_SECRET = "sikandarisagoodb$oy";
+
+// Configure multer for file uploads
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, path.join(__dirname, '../uploads')); // Ensure this path is correct
+    },
+    filename: function (req, file, cb) {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+      cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
+    }
+});
+
+const upload = multer({ storage: storage });
 
 // Route 1: Create a user using: POST "/api/auth/createuser". No login required
 router.post('/createuser', [
@@ -95,7 +109,7 @@ router.post('/login', [
     }
 });
 
-// Route 3: Get user details using: POST "/api/auth/getuser". Login required
+// Route 3: Get user details using: GET "/api/auth/getuser". Login required
 router.get('/getuser', fetchuser, async (req, res) => {
     try {
         const userid = req.user.id;
@@ -107,17 +121,50 @@ router.get('/getuser', fetchuser, async (req, res) => {
     }
 });
 
-
-// Route 4: Logout a user using: POST "/api/auth/logout". Login required
-router.post('/logout', fetchuser, (req, res) => {
+// Route 4: Update profile picture: POST "/api/auth/updateprofilepicture". Login required
+router.put('/updateprofilepicture', fetchuser, upload.single('profilePicture'), async (req, res) => {
     try {
-        // Simply tell the client to remove the token
-        res.json({ success: true, message: "User has been logged out, please clear the token on the client-side." });
+        // Get the current user
+        const user = await User.findById(req.user.id);
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        // Initialize an object to hold updates
+        const updatedProfile = {};
+
+        // Check if a new profile picture file is uploaded
+        if (req.file) {
+            updatedProfile.profilePictureUrl = `/uploads/${req.file.filename}`; // Store the file path
+        }
+
+        // Allow updating additional fields in the future
+        const { name, email } = req.body; // You can extend this to include other fields as necessary
+        if (name) updatedProfile.name = name;
+        if (email) updatedProfile.email = email;
+
+        // Update the user's profile with the new data
+        const updatedUser = await User.findByIdAndUpdate(req.user.id, { $set: updatedProfile }, { new: true }).select('-password');
+
+        res.json({
+            success: true,
+            message: "Profile picture updated successfully",
+            user: updatedUser // Return the updated user object
+        });
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Internal Server Error");
     }
 });
 
+// Route 5: Logout a user using: POST "/api/auth/logout". Login required
+router.post('/logout', fetchuser, (req, res) => {
+    try {
+        res.json({ success: true, message: "User has been logged out, please clear the token on the client-side." });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal Server Error");
+    }
+});
 
 module.exports = router;
