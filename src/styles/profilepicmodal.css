@@ -4,20 +4,20 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.8); 
+  background-color: rgba(0, 0, 0, 0.9); /* Slightly darker overlay */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .modal-content3 {
-  background: white; /* Changed to a lighter background */
-  color: #333; /* Text color for readability */
+  background: #333; /* Dark background */
+  color: #ddd; /* Light text color */
   padding: 20px;
   border-radius: 8px;
   width: 90%; /* Adjusted for responsiveness */
-  max-width: 800px; /* Ensure it doesn’t exceed 400px */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added shadow for depth */
+  max-width: 800px; /* Ensure it doesn’t exceed 800px */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Darker shadow for depth */
 }
 
 .modal-header3 {
@@ -26,15 +26,13 @@
   align-items: center;
 }
 
-
 .close-btn {
   background: none;
   border: none;
-  color: #333; /* Color for close button */
+  color: #e6e6e6; /* Light color for close button */
   font-size: 24px;
   cursor: pointer;
 }
-
 
 .profile-picture-container3 {
   margin-bottom: 20px;
@@ -96,15 +94,14 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  border: 2px dashed #ccc; /* Dashed border for the upload area */
+  border: 2px dashed #555; /* Darker dashed border for the upload area */
   border-radius: 8px;
   padding: 20px;
-  background-color: #f9f9f9; /* Light background for contrast */
+  background-color: #444; /* Dark background */
   cursor: pointer; /* Change cursor to pointer */
 }
 
-
 .upload-placeholder3 p {
   margin-top: 10px;
-  color: #666; /* Text color for instructions */
+  color: #aaa; /* Light text color for instructions */
 }

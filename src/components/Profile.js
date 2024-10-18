@@ -75,12 +75,13 @@ const Profile = () => {
         <div className="container">
           <div className="profile">
             <div className="profile-image" >
-              <img src={user.profilePictureUrl || pro} alt="" onClick={handleProfilePicModal} />
+              <img src={user.proUrl || pro} alt="" onClick={handleProfilePicModal} />
               <span className="visually-hidden"></span>
-              <i className="fas fa-comment" aria-hidden="true" style={{
+              <i className="fas fa-user-edit" aria-hidden="true" style={{
                 position: 'absolute', 
                 opacity: 0, 
-                transition: 'opacity 0.3s ease'
+                cursor: 'pointer',
+                transition: 'opacity 0.3s ease',
               }} ></i>
             </div>
 

@@ -15,9 +15,10 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  profilePictureUrl: {
+  proUrl: {
     type: String, // You can also add validation here for the URL pattern if needed
-    required: false
+    required: true,
+    default: 'file-1728806873598-146008739.jpg',
   },
   date: {
     type: Date,

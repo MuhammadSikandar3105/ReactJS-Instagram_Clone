@@ -1,7 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import Cropper from 'react-easy-crop';
-import { getCroppedImg } from './Cropimage';  // Utility function for cropping
-import { FiRotateCcw, FiRotateCw, FiZoomIn, FiZoomOut } from 'react-icons/fi';
+import { getCroppedImg } from './getCropedImg';  // Make sure the function is imported
 import { useSelector, useDispatch } from 'react-redux';
 import { closeProfilePicModal, selectIsProfilePicModalOpen } from '../state/store/profilepicSlice';
 import axios from 'axios';
@@ -13,10 +12,8 @@ const UpdateProfileModal = () => {
 
     const [imageSrc, setImageSrc] = useState(null);
     const [crop, setCrop] = useState({ x: 0, y: 0 });
-    const [zoom, setZoom] = useState(1);
-    const [rotation, setRotation] = useState(0);
+    const [zoom, setZoom] = useState(1); // Allow zoom for more accurate cropping
     const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
-    const [croppedImage, setCroppedImage] = useState(null);
     const [loading, setLoading] = useState(false);
 
     // Handle image upload
@@ -31,40 +28,48 @@ const UpdateProfileModal = () => {
         }
     };
 
-    // Crop complete callback
+    // When crop is completed, save the pixel values
     const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
         setCroppedAreaPixels(croppedAreaPixels);
     }, []);
 
-    // Handle cropping
+    // Show the cropped image and convert to Blob
     const showCroppedImage = useCallback(async () => {
         try {
-            const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels, rotation);
-            setCroppedImage(croppedImage);
+            const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
+            return croppedImage;
         } catch (e) {
-            console.error(e);
+            console.error('Error cropping image:', e);
+            return null;
         }
-    }, [croppedAreaPixels, rotation, imageSrc]);
+    }, [croppedAreaPixels, imageSrc]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await showCroppedImage(); // Generate cropped image when form is submitted
 
-        const formData = new FormData();
-        if (croppedImage) {
-            formData.append('profilePictureUrl', croppedImage); // Use the schema field 'profilePictureUrl'
+        // Get the cropped image Blob
+        const croppedImageBlob = await showCroppedImage();
+
+        if (!croppedImageBlob) {
+            console.log('No cropped image found.');
+            return;
         }
+
+        // Prepare the form data with the cropped image
+        const formData = new FormData();
+        const croppedFile = new File([croppedImageBlob], 'profile-pic.jpg', { type: 'image/jpeg' });
+        formData.append('profilepicture', croppedFile); // Ensure the field matches your API
 
         try {
             setLoading(true);
-            const response = await axios.put('/api/auth/updateprofilepicture', formData, {
+            const response = await axios.put('/api/auth/updateprofilepicture/6711f8bc7aa6ee1cadde32ff', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    'auth-token': localStorage.getItem('token'), // Ensure token is fetched properly
+                    'auth-token': localStorage.getItem('token'),
                 },
             });
-            const updatedUser = response.data;
 
+            const updatedUser = response.data;
             if (updatedUser) {
                 console.log("Profile picture updated successfully");
             } else {
@@ -91,10 +96,10 @@ const UpdateProfileModal = () => {
             <div className="modal-content3">
                 <div className="modal-header3">
                     <h2>Update Profile Picture</h2>
-                    <button className="close-btn" onClick={handleClose}>×</button> {/* Close modal icon */}
+                    <button className="close-btn" onClick={handleClose}>×</button>
                 </div>
 
-                {/* Image Crop Section */}
+                {/* Image Upload and Crop Section */}
                 <div className="profile-picture-container3">
                     {imageSrc ? (
                         <div className="crop-container3">
@@ -104,7 +109,6 @@ const UpdateProfileModal = () => {
                                 zoom={zoom}
                                 aspect={1}  // Aspect ratio for circular crop
                                 cropShape="round"
-                                rotation={rotation}
                                 onCropChange={setCrop}
                                 onCropComplete={onCropComplete}
                                 onZoomChange={setZoom}
@@ -116,14 +120,6 @@ const UpdateProfileModal = () => {
                             <p>Upload Profile Picture</p>
                         </div>
                     )}
-                </div>
-
-                {/* Controls moved outside the image select container */}
-                <div className="controls">
-                    <button onClick={() => setRotation(rotation - 90)}><FiRotateCcw /></button>
-                    <button onClick={() => setRotation(rotation + 90)}><FiRotateCw /></button>
-                    <button onClick={() => setZoom(zoom + 0.1)}><FiZoomIn /></button>
-                    <button onClick={() => setZoom(zoom - 0.1)}><FiZoomOut /></button>
                 </div>
 
                 {/* Form Actions */}

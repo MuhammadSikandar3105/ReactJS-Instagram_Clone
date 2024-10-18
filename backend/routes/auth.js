@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const User = require('../models/User');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
@@ -6,6 +7,7 @@ const { body, validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
 const fetchuser = require('../middleware/fetchuser');
 const multer = require('multer'); // For handling file uploads
+
 
 const JWT_SECRET = "sikandarisagoodb$oy";
 
@@ -23,7 +25,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Route 1: Create a user using: POST "/api/auth/createuser". No login required
-router.post('/createuser', [
+router.post('/createuser', upload.single('profilepicture'), [
     body('name').isLength({ min: 3 }),
     body('email').isEmail(),
     body('password').isLength({ min: 6 })
@@ -42,16 +44,24 @@ router.post('/createuser', [
         if (user) {
             return res.status(400).json({ success, error: "Sorry, a user already exists with this email" });
         }
-        
+
         const salt = await bcrypt.genSalt(10);
         const secPass = await bcrypt.hash(req.body.password, salt);
-        
-        // Create new user
-        user = await User.create({
+
+        // Prepare user data with optional profile picture
+        const newUser = {
             name: req.body.name,
             password: secPass,
             email: req.body.email,
-        });
+        };
+
+        // If a profile picture is uploaded, include the file path
+        if (req.file) {
+            newUser.proUrl = `/uploads/${req.file.filename}`;
+        }
+
+        // Create new user
+        user = await User.create(newUser);
 
         const data = {
             user: {
@@ -122,40 +132,53 @@ router.get('/getuser', fetchuser, async (req, res) => {
 });
 
 // Route 4: Update profile picture: POST "/api/auth/updateprofilepicture". Login required
-router.put('/updateprofilepicture', fetchuser, upload.single('profilePicture'), async (req, res) => {
+router.put('/updateprofilepicture/:id', fetchuser, upload.single('profilepicture'), async (req, res) => {
+    const { name, email } = req.body;
+    
     try {
-        // Get the current user
-        const user = await User.findById(req.user.id);
-        if (!user) {
-            return res.status(404).json({ error: "User not found" });
-        }
-
-        // Initialize an object to hold updates
+        // Initialize an object to hold the updates for the user profile
         const updatedProfile = {};
-
-        // Check if a new profile picture file is uploaded
-        if (req.file) {
-            updatedProfile.profilePictureUrl = `/uploads/${req.file.filename}`; // Store the file path
-        }
-
-        // Allow updating additional fields in the future
-        const { name, email } = req.body; // You can extend this to include other fields as necessary
+        
+        // Check if a new name or email is provided in the request body
         if (name) updatedProfile.name = name;
         if (email) updatedProfile.email = email;
 
-        // Update the user's profile with the new data
-        const updatedUser = await User.findByIdAndUpdate(req.user.id, { $set: updatedProfile }, { new: true }).select('-password');
+        // Check if a new profile picture file is uploaded
+        if (req.file) {
+            updatedProfile.proUrl = `/uploads/${req.file.filename}`; // Store the file path
+        }
 
-        res.json({
-            success: true,
-            message: "Profile picture updated successfully",
-            user: updatedUser // Return the updated user object
+        // Find the user by the ID in the URL parameter
+        let user = await User.findById(req.params.id);
+        if (!user) {
+            return res.status(404).send("User Not Found");
+        }
+
+        // Ensure that the logged-in user is updating their own profile
+        if (user.id.toString() !== req.user.id) {
+            return res.status(401).send("Not Authorized to update this profile");
+        }
+
+        // Update the user profile with the new data
+        user = await User.findByIdAndUpdate(
+            req.user.id, 
+            { $set: updatedProfile }, 
+            { new: true }
+        )
+
+        // Respond with the updated user profile
+        res.json({ 
+            success: true, 
+            message: "Profile updated successfully", 
+            user 
         });
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Internal Server Error");
     }
 });
+
+
 
 // Route 5: Logout a user using: POST "/api/auth/logout". Login required
 router.post('/logout', fetchuser, (req, res) => {
