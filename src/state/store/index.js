@@ -9,6 +9,7 @@ import moreModalReducer from './moreModal';
 import storyModalReducer from './storymodal';
 import storyRetrieveModalReducer from './storyRetrieveModal';
 import profilePicModalReducer from './profilepicSlice';
+import  reelsModalReducer  from './reelsSlice';
 
 
 const store = configureStore({
@@ -23,6 +24,7 @@ const store = configureStore({
     storyModal: storyModalReducer,
     storyRetrieveModal: storyRetrieveModalReducer,
     profilePicModal: profilePicModalReducer,
+    reelsModal: reelsModalReducer,
 
   },
 });

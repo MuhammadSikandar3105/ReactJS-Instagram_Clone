@@ -42,6 +42,7 @@ a {
     justify-content: center;
     align-items: end;
     gap: 15px;
+    margin: 30px auto 25px auto;
 }
 
 /* reels card */
@@ -49,24 +50,25 @@ a {
     position: relative;
     max-width: 500px;
     object-fit: cover;
-    width: 100%;
+    /* width: 100%; */
     justify-content: center;
     max-height: 90%;
 }
 
 /* reels card image */
-.reels-card img {
-    width: inherit;
+.reels-card video {
+    width: 400px;
+    position: relative;
     height: auto;
     object-fit: contain;
     border-radius: 10px;
 }
-.reels-card video {
+/* .reels-card video {
     width: 500px;
     height: auto;
     object-fit: contain;
     border-radius: 10px;
-}
+} */
 
 /* reels profile image */
 .reels-card .pro-detail{
@@ -179,6 +181,7 @@ a {
 /* actions btns */
 .reels-content-sec .actions-btns-main{
     margin-left: 0;
+    padding-bottom: 20px;
 }
 .reels-content-sec .actions-btns-main .action-btns{
     display: flex;

@@ -2,7 +2,7 @@ import React from 'react'
 import '../styles/stylesheet.css';
 import '../styles/responsive.css';
 import '../styles/sugestion.css';
-
+import { openReelsModal } from '../state/store/reelsSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectIcons } from '../state/store/iconSlice';
 import { Link } from 'react-router-dom';
@@ -13,6 +13,9 @@ const Suggested = () => {
   const { cross, pro } = useSelector(selectIcons);
   // active section
 
+  const handletoopenreelmodal = () => {
+    dispatch(openReelsModal())
+  };
  
 
   return (
@@ -34,7 +37,7 @@ const Suggested = () => {
                   <div className="child-image card-suggestion">
                     <img className="cross-ic" src={cross} alt="img"/>
                       <div className="item d-flex flex-column justify-content-center align-center">
-                        <div><img className="profile-su-img" src={pro} alt="" />
+                        <div><img className="profile-su-img" src={pro} alt="" onClick={handletoopenreelmodal} />
                         </div>
                         <span className=".name-su-ca">abdullah</span>
                         <p><span className="para-1">Followed by</span><span className="para-2">mohsinkahn1345

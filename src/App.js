@@ -16,6 +16,7 @@ import Message from './components/Message';
 import Storymodal from './components/Storymodal';
 import StoryRetrieveModal from './components/StoryCard ';
 import UpdateProfileModal from './components/ProfilePicModal';
+import ReelsModal from './components/ReelsModal';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('token'));
@@ -55,6 +56,7 @@ function App() {
          <Storymodal />
          <StoryRetrieveModal />
          <UpdateProfileModal />
+         <ReelsModal />
       </div>
     </Router>
   );

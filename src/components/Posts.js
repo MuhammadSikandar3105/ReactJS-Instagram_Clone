@@ -12,9 +12,9 @@ const Posts = () => {
   const [posts, setPosts] = useState([]);
   const { pro, share, heart_red, favouritPost, heart, favouritpostwhite, comment, dotbtn } = useSelector(selectIcons);
   const dispatch = useDispatch();
-  const likes = useSelector(selectLikes);
-  const liked = useSelector(selectLiked);
-  const favourit = useSelector(selectFavourite);
+  const likes = useSelector(selectLikes); // Get likes state
+  const liked = useSelector(selectLiked); // Get liked state
+  const favourit = useSelector(selectFavourite); // Get favourite state
 
   // Fetch posts from the API
   const fetchPosts = async () => {
@@ -31,14 +31,14 @@ const Posts = () => {
     fetchPosts();
   }, []);
 
-  // Handle like toggle
-  const handleLike = () => {
-    dispatch(toggleLike());
+  // Handle like toggle for a specific post
+  const handleLike = (postId) => {
+    dispatch(toggleLike(postId)); // Dispatch toggleLike with postId
   };
 
-  // Handle favourite toggle
-  const handleFavourite = () => {
-    dispatch(toggleFavourite());
+  // Handle favourite toggle for a specific post
+  const handleFavourite = (postId) => {
+    dispatch(toggleFavourite(postId)); // Dispatch toggleFavourite with postId
   };
 
   // Function to add a new post
@@ -98,15 +98,27 @@ const Posts = () => {
             </div>
             <div className="actionsBtns">
               <div className="left d-flex flex-row">
-                <img className="like-button mx-2" alt="" onClick={handleLike} src={liked ? heart_red : heart} />
+                <img
+                  className="like-button mx-2"
+                  alt=""
+                  onClick={() => handleLike(post._id)} // Pass post ID
+                  src={liked[post._id] ? heart_red : heart} // Access like state for this specific post
+                />
                 <img className="mx-2" src={comment} alt="" />
                 <img className="mx-2" src={share} alt="" />
               </div>
               <div className="right">
-                <img className="favourit" onClick={handleFavourite} src={favourit ? favouritpostwhite : favouritPost} alt="" />
+                <img
+                  className="favourit"
+                  onClick={() => handleFavourite(post._id)} // Pass post ID
+                  src={favourit[post._id] ? favouritPost : favouritpostwhite} // Access favourite state for this specific post
+                  alt=""
+                />
               </div>
             </div>
-            <h4 className="likes mx-1">{post.likes} {post.likes <= 1 ? 'Like' : 'Likes'}</h4>
+            <h4 className="likes mx-1">
+              {post.likes} {post.likes <= 1 ? 'Like' : 'Likes'}
+            </h4>
             <h4 className="message mx-1"><b>{post.username}</b> {post.caption}
               {post.hashtags.map((tag, index) => (
                 <span key={index}>#{tag}</span>

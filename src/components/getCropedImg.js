@@ -18,14 +18,14 @@ export const getCroppedImg = async (imageSrc, crop) => {
     // Draw the cropped image onto the canvas
     ctx.drawImage(
         image,
-        crop.x, crop.y, crop.width, crop.height, // Source image position and size
-        0, 0, crop.width, crop.height            // Draw image on canvas
+        crop.x, crop.y, crop.width, crop.height,
+        0, 0, crop.width, crop.height           
     );
 
-    // Convert the canvas to a Blob or Base64 (depending on how you want to return the image)
+    // Convert the canvas to a Blob or Base64 
     return new Promise((resolve) => {
         canvas.toBlob((blob) => {
-            resolve(blob);  // You can also return canvas.toDataURL() if you want Base64
-        }, 'image/jpeg');  // Adjust format if needed
+            resolve(blob); 
+        }, 'image/jpeg');  
     });
 };
