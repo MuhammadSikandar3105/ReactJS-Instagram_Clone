@@ -63,10 +63,7 @@
 }
 
 /* media uploaded */
-.media-upload input[type="file"] {
-    display: none;
-    /* Hide file input */
-}
+
 
 .media-upload-label {
     display: inline-block;
@@ -106,13 +103,14 @@
 }
 
 /* Image & Video Preview */
-.image-preview,
-.video-preview {
+.image-previewstory,
+.video-previewstory {
     width: 100%;
-    max-height: 60vh;
+    height: 500px;
+    object-fit: contain;
+    position: relative;
+    border-radius: 5px;
     margin-top: 10px;
-    border-radius: 10px;
-    object-fit: cover;
 }
 
 /* Caption Textarea */

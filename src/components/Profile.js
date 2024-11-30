@@ -65,8 +65,10 @@ const Profile = () => {
     }
   };
 
+  const userId = '673edcf0c77d287d31fffdcd'
+
   const handleProfilePicModal = () => {
-    dispatch(openProfilePicModal());
+    dispatch(openProfilePicModal(userId));
   };
 
   return (

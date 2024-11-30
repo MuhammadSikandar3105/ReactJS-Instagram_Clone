@@ -91,10 +91,10 @@ const Storymodal = () => {
               className="media-input"
             />
             {media && media.type.startsWith('image') && (
-              <img src={URL.createObjectURL(media)} alt="Selected preview" className="image-preview" />
+              <img src={URL.createObjectURL(media)} alt="Selected preview" className="image-previewstory" />
             )}
             {media && media.type.startsWith('video') && (
-              <video src={URL.createObjectURL(media)} controls className="video-preview" />
+              <video src={URL.createObjectURL(media)} controls className="video-previewstory" />
             )}
           </div>
           <div className="form-group">

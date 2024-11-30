@@ -6,7 +6,7 @@ import { closeProfilePicModal, selectIsProfilePicModalOpen } from '../state/stor
 import axios from 'axios';
 import '../styles/profilepicmodal.css';
 
-const UpdateProfileModal = () => {
+const UpdateProfileModal = ({userId}) => {
     const dispatch = useDispatch();
     const isModalOpen = useSelector(selectIsProfilePicModalOpen);
 
@@ -62,7 +62,7 @@ const UpdateProfileModal = () => {
 
         try {
             setLoading(true);
-            const response = await axios.put('/api/auth/updateprofilepicture/6711f8bc7aa6ee1cadde32ff', formData, {
+            const response = await axios.put(`/api/auth/updateprofilepicture/673edcf0c77d287d31fffdcd`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'auth-token': localStorage.getItem('token'),
@@ -77,7 +77,7 @@ const UpdateProfileModal = () => {
             }
 
             handleClose();
-            window.location.reload();
+            // window.location.reload();
         } catch (error) {
             console.error('Error updating profile picture:', error);
         } finally {
